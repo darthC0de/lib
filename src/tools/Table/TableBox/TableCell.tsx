@@ -34,11 +34,11 @@ function TableCell<T>({
 
   function numberFixed(numero: number) {
     // @ts-ignore
-    var numero = numero.toFixed(2).split('.');
+    var numero = numero.toFixed(2).split(".");
     // @ts-ignore
-    numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
+    numero[0] = numero[0].split(/(?=(?:...)*$)/).join(".");
     // @ts-ignore
-    return numero.join(',');
+    return numero.join(",");
   }
 
   switch (column.type) {
@@ -59,7 +59,7 @@ function TableCell<T>({
       formatRowColumnText = new Intl.NumberFormat("pt-BR", {
         currency: "BRL",
         style: "currency",
-      }).format(parseInt(rowColumnText.join(" "), 10));
+      }).format(parseFloat(rowColumnText.join(" ").replace(',','.')));
       break;
     case "string":
       if (

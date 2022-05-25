@@ -10,8 +10,8 @@
  *
  */
 
-export const cpfMask = (value: any) => {
-  return value
+export const cpfMask = (value: string | number): string => {
+  return String(value)
     .replace(/\D/g, "")
     .replace(/(\d{3})(\d)/, "$1.$2")
     .replace(/(\d{3})(\d)/, "$1.$2")
@@ -31,8 +31,8 @@ export const cpfMask = (value: any) => {
  *
  */
 
-export const rgMask = (value: any) => {
-  return value
+export const rgMask = (value: string | number): string => {
+  return String(value)
     .replace(/\DX-x/g, "")
     .replace(/^(\d{2})(\d{3})(\d{3})([\dX-x])$/, "$1.$2.$3-$4");
 };
@@ -44,8 +44,8 @@ export const rgMask = (value: any) => {
  *
  * @example cepMask(00000000) -> 00000-000
  */
-export const cepMask = (value: string) => {
-  return value.replace(/(\d{5})(\d{3})/, "$1-$2");
+export const cepMask = (value: string | number): string => {
+  return String(value).replace(/(\d{5})(\d{3})/, "$1-$2");
 };
 
 /**
@@ -59,7 +59,7 @@ export const cepMask = (value: string) => {
  *
  */
 
-export const placaMask = (value: any) => {
+export const placaMask = (value: string): string => {
   const mercosul = /([A-Za-z]{3}[0-9]{1}[A-Za-z]{1})/;
   const normal = /([A-Za-z]{3}[0-9]{2})/;
   const replaced = value.replace(/[^\w]/g, "");
@@ -75,11 +75,27 @@ export const placaMask = (value: any) => {
 };
 
 /**
+ *  Máscara para CNPJ
+ * @param value 'xxxxxxxxxxxxxx' dígitos do CPNJ
+ * @returns 'xx.xxx.xxx/xxxx-xx'
+ * @example cnpjMask(12345678000123) => '12.345.678/0001-23'
+ */
+export const cnpjMask = (value: string | number): string => {
+  return String(value)
+    .replace(/\D/g, "")
+    .replace(/(\d{2})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1$2")
+    .replace(/(\d{3})(\d)/, "$1/$2")
+    .replace(/(\d{4})(\d)/, "$1-$2");
+};
+
+/**
  * Valida se o input está recebendo apenas números
  * @param evt Evento de alteração do input
  * @example <Input onChange={(e)=>ValidateOnlyNumbers(e)} />
  */
-export const ValidateOnlyNumbers = (evt: any) => {
+export const ValidateOnlyNumbers = (evt: any): void => {
   const theEvent = evt || window.event;
   let key = theEvent.keyCode || theEvent.which;
   key = String.fromCharCode(key);
@@ -97,7 +113,7 @@ export const ValidateOnlyNumbers = (evt: any) => {
  *
  * @example removeAccents('líção') -> licao
  */
-export function removeAccents(s: string) {
+export function removeAccents(s: string): string {
   let r: string = s;
   const non_asciis = {
     A: "[ÀÁÂÃÄÅ]",
@@ -169,7 +185,7 @@ export const isDateValue = (value: string): string => {
  * @example formatter(000000000,'##.###.###-#')->00.000.000-0
  * @example formatter('Lorem Ipsum','#.###.###.#')->L.ore.m I.psum
  */
-const formatter = (value: string | number, mask: string) => {
+export const formatter = (value: string | number, mask: string) => {
   let i = 0;
   /** Value returned */
   let response: string = "";

@@ -316,7 +316,7 @@ function Table<T>({
                         <MenuItem onClick={() => exportData<T>(rows, columns)}>
                           Excel
                         </MenuItem>
-                        {exportOptions && exportOptions()}''
+                        {exportOptions && exportOptions()}
                       </MenuList>
                     </ClickAwayListener>
                   </List>
