@@ -1,5 +1,5 @@
-import React, { CSSProperties, ReactElement } from "react";
-import { GroupedOptionsType, OptionsType, OptionTypeBase } from "react-select";
+import React, { CSSProperties, ReactElement } from 'react';
+import { GroupedOptionsType, OptionsType, OptionTypeBase } from 'react-select';
 
 export type PropType = number | string;
 
@@ -47,7 +47,7 @@ export interface IColumn<T> {
    * @description Ao usar a opção *notEmpty*, a tabela vai analisar se toda essa coluna está com dados vazios, caso sim, ela desaparece, caso não, nada acontece.
    * @example display: true
    */
-  display?: true | false | "notEmpty";
+  display?: true | false | 'notEmpty';
   /**
    * @property *formatter* = Formata o dado da tabela e retorna essa formatação.
    * @example formatter: row => new Date(row.dataDeHoje).toLocaleString().
@@ -88,15 +88,15 @@ export interface IColumn<T> {
    * @example type: 'number' => 1234 | 1.234
    */
   type?:
-    | "currency"
-    | "number"
-    | "date"
-    | "string"
-    | "boolean"
-    | "datetime"
-    | "colspan"
-    | "time"
-    | "float";
+    | 'currency'
+    | 'number'
+    | 'date'
+    | 'string'
+    | 'boolean'
+    | 'datetime'
+    | 'colspan'
+    | 'time'
+    | 'float';
   /**
    * @property *trunc* = Quantidade de caracteres limites para quebrar a linhas do dado.
    * @example trunc: 9 => I am John
@@ -122,14 +122,14 @@ export type IRow<T = any> = T;
 export type ISelectBoxActions<T> = {
   onClick: (
     row: IRow<T>[],
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void | undefined;
   renderItem: () => string | ReactElement;
 };
 export type IRowAction<T> = {
   onClick: (
     row: IRow<T>,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void | undefined;
   renderItem: (row?: IRow<T>) => string | ReactElement;
 };
@@ -137,7 +137,7 @@ export type IRowAction<T> = {
 export type IActionRows<T> = {
   onClick: (
     row: IRow<T>[],
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void | undefined;
   renderItem: () => string | ReactElement;
 };
@@ -195,7 +195,7 @@ export interface ITableProps<T> {
   exportList?: boolean;
   exportOptions?(): React.ReactNode;
   defaultSort?: string;
-  selectAllRows?: "perPage" | "inTable";
+  selectAllRows?: 'perPage' | 'inTable';
   selectBox?: boolean;
   hidePagination?: boolean;
   background_active?: string;
@@ -209,11 +209,11 @@ export interface ITableProps<T> {
   defaultNumberOfRows?: number;
   onDeleteRow?: (
     row: IRow<T>,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onEditRow?: (
     row: IRow<T>,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
 }
 

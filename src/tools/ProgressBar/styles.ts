@@ -8,7 +8,7 @@ interface ContainerProps {
   positionTextVerticaly?: 'top' | 'bottom';
   border?: 'rounded' | 'square';
   animated?: boolean;
-  reverse?: Boolean;
+  reverse?: boolean;
 }
 
 interface ContainerNaNProps {
@@ -73,7 +73,7 @@ export const ContainerHalf = styled.div<ContainerProps>`
                     let colorIndex = 0;
                     if (breaks.length > colors.length) {
                       throw new Error(
-                        'breakPoints array should not be greater than breakPointColors array'
+                        'breakPoints array should not be greater than breakPointColors array',
                       );
                     }
                     breaks.forEach((item, index) => {
@@ -95,7 +95,7 @@ export const ContainerHalf = styled.div<ContainerProps>`
                     let colorIndex = 0;
                     if (breaks.length > colors.length) {
                       throw new Error(
-                        'breakPoints array should not be greater than breakPointColors array'
+                        'breakPoints array should not be greater than breakPointColors array',
                       );
                     }
                     breaks.forEach((item, index) => {
@@ -199,7 +199,7 @@ export const ContainerRounded = styled.div<ContainerProps>`
             let colorIndex = 0;
             if (breaks.length > colors.length) {
               throw new Error(
-                'breakPoints array should not be greater than breakPointColors array'
+                'breakPoints array should not be greater than breakPointColors array',
               );
             }
             breaks.forEach((item, index) => {
@@ -293,7 +293,7 @@ export const Container = styled.div<ContainerProps>`
         let colorIndex = 0;
         if (breaks.length > colors.length) {
           throw new Error(
-            'breakPoints array should not be greater than breakPointColors array'
+            'breakPoints array should not be greater than breakPointColors array',
           );
         }
         breaks.forEach((item, index) => {

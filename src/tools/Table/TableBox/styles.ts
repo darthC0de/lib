@@ -164,7 +164,7 @@ export const Container = styled.div`
             .right {
               flex-direction: row-reverse;
             }
-            
+
             .center {
               flex-direction: row;
               justify-content: center;
@@ -197,7 +197,7 @@ export const Container = styled.div`
             .no {
               width: 65px;
               height: 26px;
-              background: #DEF8E9;
+              background: #def8e9;
               border-radius: 6px;
               display: flex;
               align-items: center;
@@ -207,12 +207,12 @@ export const Container = styled.div`
                 font-weight: 500;
                 font-size: 11px;
                 line-height: 16px;
-                color: #59DE8F;
+                color: #59de8f;
               }
             }
 
             .no {
-              background: #F8DEDE;
+              background: #f8dede;
 
               p {
                 color: #ffa800;
@@ -465,9 +465,11 @@ export const CellContainer = styled.td<CellContainerProps>`
     }
   }
 
-  ${props => props.positionPattern && css`
-    text-align: ${props.positionPattern};
-  `}
+  ${props =>
+    props.positionPattern &&
+    css`
+      text-align: ${props.positionPattern};
+    `}
 
   ${props =>
     props.stylePattern === 'currency' &&
@@ -508,7 +510,7 @@ export const CellContainer = styled.td<CellContainerProps>`
       div {
         width: 65px !important;
         height: 26px;
-        background: #DEF8E9;
+        background: #def8e9;
         border-radius: 6px;
         display: flex;
         align-items: center;
@@ -518,7 +520,7 @@ export const CellContainer = styled.td<CellContainerProps>`
           font-weight: 500;
           font-size: 11px;
           line-height: 16px;
-          color: #59DE8F !important;
+          color: #59de8f !important;
         }
       }
     `}
@@ -527,10 +529,10 @@ export const CellContainer = styled.td<CellContainerProps>`
     props.boolean === 'false' &&
     css`
       div {
-        background: #F8DEDE;
+        background: #f8dede;
 
         p {
-          color: #DE5959 !important;
+          color: #de5959 !important;
         }
       }
     `}

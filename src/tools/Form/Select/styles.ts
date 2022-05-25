@@ -10,8 +10,7 @@ export const Container = styled.div<SelectProps>`
   .sel__control {
     transition: none;
     border-radius: 5px;
-    border: 0.5px solid
-      ${props => (!props.error ? '#AFAFAF' : '#e12325')};
+    border: 0.5px solid ${props => (!props.error ? '#AFAFAF' : '#e12325')};
 
     box-shadow: ${props => (!props.error ? '' : '0 0 0 0.5px #e12325')};
     background: #ffffff;
@@ -19,7 +18,7 @@ export const Container = styled.div<SelectProps>`
     .sel__value-container {
       .sel__placeholder {
         font-size: 13px;
-        color: #B0B0B0;
+        color: #b0b0b0;
       }
       .sel__single-value {
         font-size: 13px;

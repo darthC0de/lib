@@ -8,70 +8,70 @@ import {
 } from './styles';
 
 export interface ProgressBarProps {
-/**
- * @property *value* = Valor do progresso.
- * @example value={100}
- */
+  /**
+   * @property *value* = Valor do progresso.
+   * @example value={100}
+   */
   value: number;
-/**
- * @property *reverse* = Faz com que as cores do progresso fiquem em um progresso reverso (0 = verde / 100 = vermelho).
- * @example reverse={true}
- */
-  reverse?: Boolean;
-/**
- * @property *breakPoints* = Designa ao `progressBar` em quais pontos ele deverá atribuir uma cor diferente.
- * @example breakPoints=[1, 10, 50]
- */
+  /**
+   * @property *reverse* = Faz com que as cores do progresso fiquem em um progresso reverso (0 = verde / 100 = vermelho).
+   * @example reverse={true}
+   */
+  reverse?: boolean;
+  /**
+   * @property *breakPoints* = Designa ao `progressBar` em quais pontos ele deverá atribuir uma cor diferente.
+   * @example breakPoints=[1, 10, 50]
+   */
   breakPoints?: number[];
-/**
- * @property *breakPointColors* = Designa ao `progressBar` quais cores ele irá mudar, respectivamente em cada breakPoint.
- * @example breakPointsColors=[#fff, #f3e, #2d3] respectivamente para -> [1, 10, 50].
- */
+  /**
+   * @property *breakPointColors* = Designa ao `progressBar` quais cores ele irá mudar, respectivamente em cada breakPoint.
+   * @example breakPointsColors=[#fff, #f3e, #2d3] respectivamente para -> [1, 10, 50].
+   */
   breakPointColors?: string[];
-/**
- * @property *type* = Diferentes tipos de progressBar.
- * @example type={'linear' | 'rounded' | 'half' | 'number' | 'value'}
- */
+  /**
+   * @property *type* = Diferentes tipos de progressBar.
+   * @example type={'linear' | 'rounded' | 'half' | 'number' | 'value'}
+   */
   type: 'linear' | 'rounded' | 'half' | 'number' | 'value';
-/**
- * @property *label* = Apresentará um texto para identificar o progressBar.
- * @example label="Texto"
- */
+  /**
+   * @property *label* = Apresentará um texto para identificar o progressBar.
+   * @example label="Texto"
+   */
   label?: string;
-/**
- * @property *hiddenLabel* = Esconde o `label`.
- * @example hiddenLabel={false}
- */
+  /**
+   * @property *hiddenLabel* = Esconde o `label`.
+   * @example hiddenLabel={false}
+   */
   hiddenLabel?: boolean;
-/**
- * @property *border* = Define o estilo das bordas do progressBar.
- * @example border={'rounded' | 'square'}
- */
+  /**
+   * @property *border* = Define o estilo das bordas do progressBar.
+   * @example border={'rounded' | 'square'}
+   */
   border?: 'rounded' | 'square';
-/**
- * @property *animated* = Define se o progressBar será animado ou não.
- * @example animated={true}
- */
+  /**
+   * @property *animated* = Define se o progressBar será animado ou não.
+   * @example animated={true}
+   */
   animated?: boolean;
-/**
- * @property *positionTextHorizontaly* = Designa a posição horizontal da label (apenas tipo `linear`).
- * @example positionTextHorizontaly={'left' | 'center' | 'right'}
- */
+  /**
+   * @property *positionTextHorizontaly* = Designa a posição horizontal da label (apenas tipo `linear`).
+   * @example positionTextHorizontaly={'left' | 'center' | 'right'}
+   */
   positionTextHorizontaly?: 'left' | 'center' | 'right';
-/**
- * @property *positionTextVerticaly* = Designa a posição vertical da label (apenas tipo `linear`).
- * @example positionTextVerticaly={'top' | 'bottom'}
- */
+  /**
+   * @property *positionTextVerticaly* = Designa a posição vertical da label (apenas tipo `linear`).
+   * @example positionTextVerticaly={'top' | 'bottom'}
+   */
   positionTextVerticaly?: 'top' | 'bottom';
-/**
- * @property *style* = Pode atribuir mais estilos ao progressBar.
- * @example style={{filter: 'blur(10px)'}}
- */
+  /**
+   * @property *style* = Pode atribuir mais estilos ao progressBar.
+   * @example style={{filter: 'blur(10px)'}}
+   */
   style?: CSSProperties;
-/**
- * @property *fontSize* = Tamanho da fonte da label.
- * @example fontSize={14}
- */
+  /**
+   * @property *fontSize* = Tamanho da fonte da label.
+   * @example fontSize={14}
+   */
   fontSize?: number;
 }
 

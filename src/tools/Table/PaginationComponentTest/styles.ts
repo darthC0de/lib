@@ -24,7 +24,7 @@ export const Container = styled.div`
       transition: all 0.3s;
 
       &:hover {
-        background: #408CFE;
+        background: #408cfe;
         color: #fff;
       }
 
@@ -110,12 +110,12 @@ export const SelectContainer = styled.div`
         color: #606060;
       }
       .sel__option--is-selected {
-        background: #408CFE;
+        background: #408cfe;
         color: #fff;
       }
 
       .sel__option--is-focused {
-        background: #408CFE;
+        background: #408cfe;
         color: #fff;
       }
     }
@@ -124,7 +124,7 @@ export const SelectContainer = styled.div`
 
 interface ButtonLinkProps {
   active: boolean;
-  backgroundActive?: string; 
+  backgroundActive?: string;
 }
 
 export const ButtonLink = styled.button<ButtonLinkProps>`
@@ -149,7 +149,8 @@ export const ButtonLink = styled.button<ButtonLinkProps>`
   ${props =>
     props.active &&
     css`
-      background: ${props.backgroundActive && props.backgroundActive || '#408CFE'};
+      background: ${(props.backgroundActive && props.backgroundActive) ||
+      '#408CFE'};
       color: #fff !important;
       margin: 0 4px;
 

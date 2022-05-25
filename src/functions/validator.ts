@@ -10,13 +10,13 @@
  *
  */
 
-export const cpfMask = (value: any) => {
-  return value
-    .replace(/\D/g, "")
-    .replace(/(\d{3})(\d)/, "$1.$2")
-    .replace(/(\d{3})(\d)/, "$1.$2")
-    .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-    .replace(/(-\d{2})\d+?$/, "$1");
+export const cpfMask = (value: string | number): string => {
+  return String(value)
+    .replace(/\D/g, '')
+    .replace(/(\d{3})(\d)/, '$1.$2')
+    .replace(/(\d{3})(\d)/, '$1.$2')
+    .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+    .replace(/(-\d{2})\d+?$/, '$1');
 };
 
 /**
@@ -31,10 +31,10 @@ export const cpfMask = (value: any) => {
  *
  */
 
-export const rgMask = (value: any) => {
-  return value
-    .replace(/\DX-x/g, "")
-    .replace(/^(\d{2})(\d{3})(\d{3})([\dX-x])$/, "$1.$2.$3-$4");
+export const rgMask = (value: string | number): string => {
+  return String(value)
+    .replace(/\DX-x/g, '')
+    .replace(/^(\d{2})(\d{3})(\d{3})([\dX-x])$/, '$1.$2.$3-$4');
 };
 
 /**
@@ -44,8 +44,8 @@ export const rgMask = (value: any) => {
  *
  * @example cepMask(00000000) -> 00000-000
  */
-export const cepMask = (value: string) => {
-  return value.replace(/(\d{5})(\d{3})/, "$1-$2");
+export const cepMask = (value: string | number): string => {
+  return String(value).replace(/(\d{5})(\d{3})/, '$1-$2');
 };
 
 /**
@@ -59,19 +59,35 @@ export const cepMask = (value: string) => {
  *
  */
 
-export const placaMask = (value: any) => {
+export const placaMask = (value: string): string => {
   const mercosul = /([A-Za-z]{3}[0-9]{1}[A-Za-z]{1})/;
   const normal = /([A-Za-z]{3}[0-9]{2})/;
-  const replaced = value.replace(/[^\w]/g, "");
+  const replaced = value.replace(/[^\w]/g, '');
   if (normal.exec(replaced)) {
-    value = value.replace(/^([A-Za-z]{3})([0-9]{4})$/, "$1-$2");
+    value = value.replace(/^([A-Za-z]{3})([0-9]{4})$/, '$1-$2');
   } else if (mercosul.exec(replaced)) {
     value = value.replace(
       /^([A-Za-z]{3})([0-9]{1})([A-Za-z]{1})([0-9]{2})$/,
-      "$1$2$3$4"
+      '$1$2$3$4',
     );
   }
   return value;
+};
+
+/**
+ *  Máscara para CNPJ
+ * @param value 'xxxxxxxxxxxxxx' dígitos do CPNJ
+ * @returns 'xx.xxx.xxx/xxxx-xx'
+ * @example cnpjMask(12345678000123) => '12.345.678/0001-23'
+ */
+export const cnpjMask = (value: string | number): string => {
+  return String(value)
+    .replace(/\D/g, '')
+    .replace(/(\d{2})(\d)/, '$1.$2')
+    .replace(/(\d{3})(\d)/, '$1.$2')
+    .replace(/(\d{3})(\d)/, '$1$2')
+    .replace(/(\d{3})(\d)/, '$1/$2')
+    .replace(/(\d{4})(\d)/, '$1-$2');
 };
 
 /**
@@ -79,7 +95,7 @@ export const placaMask = (value: any) => {
  * @param evt Evento de alteração do input
  * @example <Input onChange={(e)=>ValidateOnlyNumbers(e)} />
  */
-export const ValidateOnlyNumbers = (evt: any) => {
+export const ValidateOnlyNumbers = (evt: any): void => {
   const theEvent = evt || window.event;
   let key = theEvent.keyCode || theEvent.which;
   key = String.fromCharCode(key);
@@ -97,33 +113,33 @@ export const ValidateOnlyNumbers = (evt: any) => {
  *
  * @example removeAccents('líção') -> licao
  */
-export function removeAccents(s: string) {
+export function removeAccents(s: string): string {
   let r: string = s;
   const non_asciis = {
-    A: "[ÀÁÂÃÄÅ]",
-    AE: "Æ",
-    C: "Ç",
-    E: "[ÈÉÊË]",
-    I: "[ÌÍÎÏ]",
-    N: "Ñ",
-    O: "[ÒÓÔÕÖ]",
-    OE: "Œ",
-    U: "[ÙÚÛŰÜ]",
-    Y: "[ÝŸ]",
-    a: "[àáâãäå]",
-    ae: "æ",
-    c: "ç",
-    e: "[èéêë]",
-    i: "[ìíîï]",
-    n: "ñ",
-    o: "[òóôõö]",
-    oe: "œ",
-    u: "[ùúûűü]",
-    y: "[ýÿ]",
+    A: '[ÀÁÂÃÄÅ]',
+    AE: 'Æ',
+    C: 'Ç',
+    E: '[ÈÉÊË]',
+    I: '[ÌÍÎÏ]',
+    N: 'Ñ',
+    O: '[ÒÓÔÕÖ]',
+    OE: 'Œ',
+    U: '[ÙÚÛŰÜ]',
+    Y: '[ÝŸ]',
+    a: '[àáâãäå]',
+    ae: 'æ',
+    c: 'ç',
+    e: '[èéêë]',
+    i: '[ìíîï]',
+    n: 'ñ',
+    o: '[òóôõö]',
+    oe: 'œ',
+    u: '[ùúûűü]',
+    y: '[ýÿ]',
   };
   for (const i in non_asciis) {
     // @ts-ignore
-    r = String(r).replace(new RegExp(non_asciis[i], "g"), i);
+    r = String(r).replace(new RegExp(non_asciis[i], 'g'), i);
   }
   return r;
 }
@@ -141,19 +157,19 @@ export const isDateValue = (value: string): string => {
   const universalDateRegex2 = /\d{4}-\d{2}-\d{1}/g;
 
   if (isoDateRegex.test(value)) {
-    const d1 = value.split("T")[0].split("-");
+    const d1 = value.split('T')[0].split('-');
     d1[0] = d1[0].slice(2, 4);
-    const date = d1.reverse().join("/");
-    const time = value.split("T")[1].split(":").slice(0, 2).join(":");
+    const date = d1.reverse().join('/');
+    const time = value.split('T')[1].split(':').slice(0, 2).join(':');
     return `${date}-${time}`;
   }
 
   if (universalDateRegex.test(value)) {
-    return value.split("-").slice(0, 3).reverse().join("/");
+    return value.split('-').slice(0, 3).reverse().join('/');
   }
 
   if (universalDateRegex2.test(value)) {
-    return value.split("-").slice(0, 3).reverse().join("/");
+    return value.split('-').slice(0, 3).reverse().join('/');
   }
 
   return value;
@@ -169,10 +185,10 @@ export const isDateValue = (value: string): string => {
  * @example formatter(000000000,'##.###.###-#')->00.000.000-0
  * @example formatter('Lorem Ipsum','#.###.###.#')->L.ore.m I.psum
  */
-const formatter = (value: string | number, mask: string) => {
+export const formatter = (value: string | number, mask: string) => {
   let i = 0;
   /** Value returned */
-  let response: string = "";
+  let response = '';
   const saida = mask.substring(1, 0);
   while (i < String(value).length) {
     const texto = mask.substring(i);

@@ -1,6 +1,6 @@
-import React from "react";
-import { TableCellProps } from "./types";
-import { CellContainer } from "./styles";
+import React from 'react';
+import { TableCellProps } from './types';
+import { CellContainer } from './styles';
 
 function TableCell<T>({
   column,
@@ -9,7 +9,7 @@ function TableCell<T>({
 }: React.PropsWithChildren<TableCellProps<T>>): JSX.Element {
   const rowColumnText: React.ReactText[] = [];
   let formatRowColumnText;
-  let booleanClass: "true" | "false" | undefined;
+  let booleanClass: 'true' | 'false' | undefined;
 
   if (column.renderItem) {
     return (
@@ -42,65 +42,65 @@ function TableCell<T>({
   }
 
   switch (column.type) {
-    case "number": {
+    case 'number': {
       formatRowColumnText = rowColumnText.reduce((text, item, index) => {
         if (index === 0) {
           return (Math.trunc((item as number) * 100) / 100).toLocaleString(
-            "pt-BR"
+            'pt-BR',
           );
         }
         return `${text} ${(
           Math.trunc((item as number) * 100) / 100
-        ).toLocaleString("pt-BR")}`;
-      }, "");
+        ).toLocaleString('pt-BR')}`;
+      }, '');
       break;
     }
-    case "currency":
-      formatRowColumnText = new Intl.NumberFormat("pt-BR", {
-        currency: "BRL",
-        style: "currency",
-      }).format(parseInt(rowColumnText.join(" "), 10));
+    case 'currency':
+      formatRowColumnText = new Intl.NumberFormat('pt-BR', {
+        currency: 'BRL',
+        style: 'currency',
+      }).format(parseFloat(rowColumnText.join(' ').replace(',', '.')));
       break;
-    case "string":
+    case 'string':
       if (
         column.trunc &&
-        rowColumnText.join(column.delimiter || " ").length > column.trunc
+        rowColumnText.join(column.delimiter || ' ').length > column.trunc
       ) {
         formatRowColumnText = `${rowColumnText
-          .join(column.delimiter || " ")
+          .join(column.delimiter || ' ')
           .slice(0, column.trunc)}...`;
       }
       break;
-    case "date":
+    case 'date':
       if (rowColumnText[0]) {
         formatRowColumnText = new Date(rowColumnText[0]).toLocaleDateString();
       } else {
-        formatRowColumnText = "";
+        formatRowColumnText = '';
       }
       break;
-    case "datetime": {
+    case 'datetime': {
       if (rowColumnText[0]) {
         formatRowColumnText = new Date(rowColumnText[0]).toLocaleString();
       } else {
-        formatRowColumnText = "";
+        formatRowColumnText = '';
       }
       break;
     }
-    case "time":
+    case 'time':
       formatRowColumnText = new Date(rowColumnText[0]).toLocaleTimeString();
       break;
-    case "boolean":
-      if (rowColumnText.join(" ") === "true") {
-        booleanClass = "true";
+    case 'boolean':
+      if (rowColumnText.join(' ') === 'true') {
+        booleanClass = 'true';
       } else {
-        booleanClass = "false";
+        booleanClass = 'false';
       }
       break;
-    case "float":
+    case 'float':
       if (rowColumnText[0]) {
         formatRowColumnText = numberFixed(Number(rowColumnText[0]));
       } else {
-        formatRowColumnText = "";
+        formatRowColumnText = '';
       }
       break;
     default:
@@ -113,7 +113,7 @@ function TableCell<T>({
 
   return (
     <>
-      {column.type === "colspan" ? (
+      {column.type === 'colspan' ? (
         <CellContainer
           key={`${column.title}.${Math.random() + new Date().getTime()}`}
           boolean={booleanClass}
@@ -132,16 +132,16 @@ function TableCell<T>({
           >
             <div
               style={{
-                padding: "8px",
-                margin: "auto",
+                padding: '8px',
+                margin: 'auto',
               }}
             >
               {booleanClass &&
-                (booleanClass === "true" ? <p>Ativo</p> : <p>Inativo</p>)}
+                (booleanClass === 'true' ? <p>Ativo</p> : <p>Inativo</p>)}
               {!booleanClass && (
                 <p style={{ ...column.cssText }}>
                   {formatRowColumnText ||
-                    rowColumnText.join(column.delimiter || " ")}
+                    rowColumnText.join(column.delimiter || ' ')}
                 </p>
               )}
             </div>
@@ -156,16 +156,16 @@ function TableCell<T>({
           >
             <div
               style={{
-                padding: "8px",
-                margin: "auto",
+                padding: '8px',
+                margin: 'auto',
               }}
             >
               {booleanClass &&
-                (booleanClass === "true" ? <p>Ativo</p> : <p>Inativo</p>)}
+                (booleanClass === 'true' ? <p>Ativo</p> : <p>Inativo</p>)}
               {!booleanClass && (
                 <p style={{ ...column.cssText }}>
                   {formatRowColumnText ||
-                    rowColumnText.join(column.delimiter || " ")}
+                    rowColumnText.join(column.delimiter || ' ')}
                 </p>
               )}
             </div>
@@ -180,16 +180,16 @@ function TableCell<T>({
           >
             <div
               style={{
-                padding: "8px",
-                margin: "auto",
+                padding: '8px',
+                margin: 'auto',
               }}
             >
               {booleanClass &&
-                (booleanClass === "true" ? <p>Ativo</p> : <p>Inativo</p>)}
+                (booleanClass === 'true' ? <p>Ativo</p> : <p>Inativo</p>)}
               {!booleanClass && (
                 <p style={{ ...column.cssText }}>
                   {formatRowColumnText ||
-                    rowColumnText.join(column.delimiter || " ")}
+                    rowColumnText.join(column.delimiter || ' ')}
                 </p>
               )}
             </div>
@@ -204,16 +204,16 @@ function TableCell<T>({
         >
           <div
             style={{
-              padding: "8px",
-              margin: "auto",
+              padding: '8px',
+              margin: 'auto',
             }}
           >
             {booleanClass &&
-              (booleanClass === "true" ? <p>Sim</p> : <p>Não</p>)}
+              (booleanClass === 'true' ? <p>Sim</p> : <p>Não</p>)}
             {!booleanClass && (
               <p style={{ ...column.cssText }}>
                 {formatRowColumnText ||
-                  rowColumnText.join(column.delimiter || " ")}
+                  rowColumnText.join(column.delimiter || ' ')}
               </p>
             )}
           </div>

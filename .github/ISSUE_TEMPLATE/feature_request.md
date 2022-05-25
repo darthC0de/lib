@@ -7,9 +7,11 @@ assignees: ''
 ---
 
 ## Feature description
+
 Place here some description about your feature, what's it about. Does it solves any known issue?
 
 ### Feature changelog
+
 What does your feature changes? What is included, changed or removed with this new feature?
 
 ### Additional Context
