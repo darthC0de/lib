@@ -7,7 +7,7 @@ import { Container } from './styles';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   onClickEvent?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   label?: string;
 }
@@ -41,7 +41,7 @@ const Checkbox: React.FC<InputProps> = ({
 
       if (onClickEvent) onClickEvent(event);
     },
-    [onClickEvent]
+    [onClickEvent],
   );
 
   return (

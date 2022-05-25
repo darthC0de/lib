@@ -2,37 +2,37 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/no-array-index-key */
-import React, { useCallback, useState, useEffect } from "react";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
-import { BiLoaderAlt } from "react-icons/bi";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import { ButtonBase, Grow, IconButton, Popper } from "@material-ui/core";
+import React, { useCallback, useState, useEffect } from 'react';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { BiLoaderAlt } from 'react-icons/bi';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import { ButtonBase, Grow, IconButton, Popper } from '@material-ui/core';
 import {
   Container,
   ActionsContainer,
   LoadingContainer,
   SortButton,
   List,
-} from "./styles";
+} from './styles';
 
-import TableFilterCell from "../../../assets/svg/Filter.svg";
-import TableArrow from "../../../assets/svg/Arrow_bottom.svg";
-import exportData from "./excel";
-import TableDeleteItem from "../../../assets/svg/table-delete-item.svg";
-import TableEditItem from "../../../assets/svg/table-edit-item.svg";
+import TableFilterCell from '../../../assets/svg/Filter.svg';
+import TableArrow from '../../../assets/svg/Arrow_bottom.svg';
+import exportData from './excel';
+import TableDeleteItem from '../../../assets/svg/table-delete-item.svg';
+import TableEditItem from '../../../assets/svg/table-edit-item.svg';
 import {
   IColumn,
   ITableProps,
   IRow,
   IRowAction,
   ISelectBoxActions,
-} from "./types";
-import TableSelectBox from "./SelectBox";
-import TableCell from "./TableCell";
-import AllTableSelectBox from "./AllSelectBox";
-import PaginationComponent from "../PaginationComponentTest";
+} from './types';
+import TableSelectBox from './SelectBox';
+import TableCell from './TableCell';
+import AllTableSelectBox from './AllSelectBox';
+import PaginationComponent from '../PaginationComponentTest';
 
 /**
  * Componente para renderização dinâmica de tabelas.
@@ -89,7 +89,7 @@ function Table<T>({
     defaultNumberOfRows ||
       (!!paginationOptions && paginationOptions?.length
         ? paginationOptions[0].label
-        : 5)
+        : 5),
   );
   const [selectedRows, setSelectedRows] = useState<IRow<T>[]>([] as IRow<T>[]);
 
@@ -98,13 +98,13 @@ function Table<T>({
     //   selectedRows.length ===
     //     rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).length
     // );
-    if (selectAllRows === "inTable") {
+    if (selectAllRows === 'inTable') {
       setIsAllSelected(selectedRows.length === rows.length);
     } else {
       setIsAllSelected(
         selectedRows.length ===
           rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .length
+            .length,
       );
     }
   }, [page, rows, rowsPerPage, selectAllRows, selectedRows.length]);
@@ -117,7 +117,7 @@ function Table<T>({
   }, []);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
@@ -145,19 +145,19 @@ function Table<T>({
     (column: IColumn<T>) => {
       const newSortAtribute = column.props[0].toString();
       if (newSortAtribute === sortBy) {
-        setSortAscending((oldState) => !oldState);
+        setSortAscending(oldState => !oldState);
       } else {
         setSortAscending(true);
       }
       setSortBy(newSortAtribute);
     },
-    [sortBy]
+    [sortBy],
   );
 
   const dynamicSort = useCallback((prop: string) => {
     let sortOrder = 1;
     let property = prop;
-    if (property[0] === "-") {
+    if (property[0] === '-') {
       sortOrder = -1;
       property = property.substr(1);
     }
@@ -188,17 +188,17 @@ function Table<T>({
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
+    newPage: number,
   ) => {
-    if (selectAllRows === "perPage") {
+    if (selectAllRows === 'perPage') {
       setPage(newPage);
       setIsAllSelected(
         selectedRows.includes(
           rows.slice(
             newPage * rowsPerPage,
-            newPage * rowsPerPage + rowsPerPage
-          )[0]
-        )
+            newPage * rowsPerPage + rowsPerPage,
+          )[0],
+        ),
       );
     } else {
       setPage(newPage);
@@ -206,14 +206,14 @@ function Table<T>({
     }
   };
   const handleAllSelect = useCallback(
-    (type: "inTable" | "perPage") => {
-      if (type === "inTable") {
+    (type: 'inTable' | 'perPage') => {
+      if (type === 'inTable') {
         setSelectedRows(
           selectedRows.length === 0
             ? [...rows]
             : selectedRows.length === rows.length
             ? []
-            : [...rows]
+            : [...rows],
         );
       } else {
         setSelectedRows(
@@ -223,16 +223,16 @@ function Table<T>({
               rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .length
             ? []
-            : rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
         );
       }
     },
-    [page, rows, rowsPerPage, selectedRows.length]
+    [page, rows, rowsPerPage, selectedRows.length],
   );
 
   const handleSelect = useCallback(
     (row: IRow<T>) => {
-      const index = selectedRows.findIndex((row_) => row_ === row);
+      const index = selectedRows.findIndex(row_ => row_ === row);
       if (index >= 0) {
         selectedRows.splice(index, 1);
         setSelectedRows(selectedRows);
@@ -242,7 +242,7 @@ function Table<T>({
         updateRows();
       }
     },
-    [selectedRows, updateRows]
+    [selectedRows, updateRows],
   );
 
   const actionHandle = useCallback(
@@ -252,17 +252,17 @@ function Table<T>({
       setAllSelected(false);
       // console.log({ rowsSelected, handled, event, allSelected, selectedRows });
     },
-    []
+    [],
   );
 
   useEffect(() => {
-    if (selectAllRows === "inTable") {
+    if (selectAllRows === 'inTable') {
       setIsAllSelected(selectedRows.length === rows.length);
     } else {
       setIsAllSelected(
         selectedRows.length ===
           rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .length
+            .length,
       );
     }
   }, [page, rows, rows.length, rowsPerPage, selectAllRows, selectedRows]);
@@ -283,12 +283,12 @@ function Table<T>({
           <>
             <IconButton
               ref={anchorRef}
-              aria-controls={open ? "export-list" : undefined}
+              aria-controls={open ? 'export-list' : undefined}
               aria-haspopup="true"
               style={
                 selectBoxActions
-                  ? { padding: "8px", marginRight: "0.7rem" }
-                  : { padding: "8px", marginBottom: "0.7rem" }
+                  ? { padding: '8px', marginRight: '0.7rem' }
+                  : { padding: '8px', marginBottom: '0.7rem' }
               }
               onClick={handleToggle}
             >
@@ -307,7 +307,7 @@ function Table<T>({
                   {...TransitionProps}
                   style={{
                     transformOrigin:
-                      placement === "bottom" ? "center top" : "center bottom",
+                      placement === 'bottom' ? 'center top' : 'center bottom',
                   }}
                 >
                   <List id="exportListContentId" className="exportListContent">
@@ -333,12 +333,12 @@ function Table<T>({
                   key={String(index)}
                   type="button"
                   className="exportBtn"
-                  onClick={(event) => actionHandle(selectedRows, action, event)}
+                  onClick={event => actionHandle(selectedRows, action, event)}
                 >
                   {action.renderItem()}
                 </button>
               </>
-            )
+            ),
           )}
         {getRows &&
           getRows.map((action, index) => (
@@ -347,7 +347,7 @@ function Table<T>({
                 key={String(index)}
                 type="button"
                 className="exportBtn"
-                onClick={(event) => action.onClick(rows, event)}
+                onClick={event => action.onClick(rows, event)}
               >
                 {action.renderItem()}
               </ButtonBase>
@@ -360,111 +360,128 @@ function Table<T>({
           {/* here div scroll */}
           <table id="box" className="table-box tableBoxId">
             <thead>
-              <tr key={Date.now() + "theader" + Math.random()}>
+              <tr key={`${Date.now()}theader${Math.random()}`}>
                 {selectBox && (
-                  <th style={{ padding: "7px", width: "2%" }}>
-                    {selectAllRows === "inTable" && (
+                  <th style={{ padding: '7px', width: '2%' }}>
+                    {selectAllRows === 'inTable' && (
                       <AllTableSelectBox
                         select={isAllSelected}
-                        onClick={() => handleAllSelect("inTable")}
+                        onClick={() => handleAllSelect('inTable')}
                       />
                     )}
-                    {selectAllRows === "perPage" && (
+                    {selectAllRows === 'perPage' && (
                       <AllTableSelectBox
                         select={isAllSelected}
-                        onClick={() => handleAllSelect("perPage")}
+                        onClick={() => handleAllSelect('perPage')}
                       />
                     )}
                     {!selectAllRows && (
                       <AllTableSelectBox
                         select={isAllSelected}
-                        onClick={() => handleAllSelect("inTable")}
+                        onClick={() => handleAllSelect('inTable')}
                       />
                     )}
                   </th>
                 )}
-                {columns?.map((column) => {
-                  if (column.display === "notEmpty") {
-                    if (
-                      rows.findIndex((item: any) => item[column.props[0]]) > -1
-                    ) {
-                      return (
-                        <th className={column.sticky ? 'sticky' : ''} key={column.title}>
-                          <div style={column.cssTitle} className="title">
-                            {column.orderable ? (
-                              <SortButton
-                                type="button"
-                                onClick={() => onChangeSort(column)}
-                                className={`${typeof column.position === 'string' ? column.position : column.type === 'number' ? 'right' : null } icon`}
-                              >
-                                <h1>{column.title}</h1>
-                                <img
-                                  style={{
-                                    transform: `rotate(${
-                                      sortAscending &&
+                {columns?.map(column => {
+									if (column.display === 'notEmpty') {
+										if (
+											rows.findIndex((item: any) => item[column.props[0]]) > -1
+										) {
+											return (
+												<th
+													className={column.sticky ? 'sticky' : ''}
+													key={column.title}
+												>
+													<div style={column.cssTitle} className="title">
+														{column.orderable ? (
+															<SortButton
+																type="button"
+																onClick={() => onChangeSort(column)}
+																className={`${
+																	typeof column.position === 'string'
+																		? column.position
+																		: column.type === 'number'
+																			? 'right'
+																			: null
+																} icon`}
+															>
+																<h1>{column.title}</h1>
+																<img
+																	style={{
+																		transform: `rotate(${
+																			sortAscending &&
                                       column.props[0] === sortBy
-                                        ? "180deg"
-                                        : 0
-                                    })`,
-                                    width: "15px",
-                                  }}
-                                  src={
-                                    column.props[0] === sortBy
-                                      ? TableArrow
-                                      : TableFilterCell
-                                  }
-                                  alt={column.title}
-                                />
-                              </SortButton>
-                            ) : (
-                              <h1>{column.title}</h1>
-                            )}
-                          </div>
-                        </th>
-                      );
-                    } else {
-                      return null;
-                    }
+																				? '180deg'
+																				: 0
+																		})`,
+																		width: '15px',
+																	}}
+																	src={
+																		column.props[0] === sortBy
+																			? TableArrow
+																			: TableFilterCell
+																	}
+																	alt={column.title}
+																/>
+															</SortButton>
+														) : (
+															<h1>{column.title}</h1>
+														)}
+													</div>
+												</th>
+											);
+										}
+                    return null;
                   }
-                  return (
-                    <>
-                      {column.display === false ? null : (
-                        <th className={column.sticky ? 'sticky' : ''} key={column.title}>
-                          <div style={column.cssTitle} className="title">
-                            {column.orderable ? (
-                              <SortButton
-                                type="button"
-                                onClick={() => onChangeSort(column)}
-                                className={`${typeof column.position === 'string' ? column.position : column.type === 'number' ? 'right' : null } icon`}
-                              >
-                                <h1>{column.title}</h1>
-                                <img
-                                  style={{
-                                    transform: `rotate(${
-                                      sortAscending &&
+									return (
+										<>
+											{column.display === false ? null : (
+												<th
+													className={column.sticky ? 'sticky' : ''}
+													key={column.title}
+												>
+													<div style={column.cssTitle} className="title">
+														{column.orderable ? (
+															<SortButton
+																type="button"
+																onClick={() => onChangeSort(column)}
+																className={`${
+																	typeof column.position === 'string'
+																		? column.position
+																		: column.type === 'number'
+																			? 'right'
+																			: null
+																} icon`}
+															>
+																<h1>{column.title}</h1>
+																<img
+																	style={{
+																		transform: `rotate(${
+																			sortAscending &&
                                       column.props[0] === sortBy
-                                        ? "180deg"
-                                        : 0
-                                    })`,
-                                    width: "15px",
-                                  }}
-                                  src={
-                                    column.props[0] === sortBy
-                                      ? TableArrow
-                                      : TableFilterCell
-                                  }
-                                  alt={column.title}
-                                />
-                              </SortButton>
-                            ) : (
-                              <h1>{column.title}</h1>
-                            )}
-                          </div>
-                        </th>
-                      )}
-                    </>
-                  );
-                })}
+																				? '180deg'
+																				: 0
+																		})`,
+																		width: '15px',
+																	}}
+																	src={
+																		column.props[0] === sortBy
+																			? TableArrow
+																			: TableFilterCell
+																	}
+																	alt={column.title}
+																/>
+															</SortButton>
+														) : (
+															<h1>{column.title}</h1>
+														)}
+													</div>
+												</th>
+											)}
+										</>
+									);
+								})}
                 {rowActions?.length || onEditRow || onDeleteRow ? (
                   <th>
                     <div className="title">
@@ -477,13 +494,13 @@ function Table<T>({
             <tbody>
               {(!hidePagination
                 ? rows
-                    .sort(dynamicSort(`${sortAscending ? "-" : ""}${sortBy}`))
+                    .sort(dynamicSort(`${sortAscending ? '-' : ''}${sortBy}`))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : rows.sort(dynamicSort(`${sortAscending ? "-" : ""}${sortBy}`))
+                : rows.sort(dynamicSort(`${sortAscending ? '-' : ''}${sortBy}`))
               ).map((row, index) => (
                 <tr tabIndex={index} key={Date.now() + index + Math.random()}>
                   {selectBox && (
-                    <td style={{ padding: "7px" }} width="2%">
+                    <td style={{ padding: '7px' }} width="2%">
                       <TableSelectBox
                         select={selectedRows.includes(row)}
                         onClick={() => handleSelect(row)}
@@ -492,7 +509,7 @@ function Table<T>({
                   )}
 
                   {columns.map((column, indexColumn) => {
-                    if (column.display === "notEmpty") {
+                    if (column.display === 'notEmpty') {
                       if (
                         rows.findIndex((item: any) => item[column.props[0]]) >
                         -1
@@ -504,9 +521,8 @@ function Table<T>({
                             row={row}
                           />
                         );
-                      } else {
-                        return null;
                       }
+                      return null;
                     }
                     if (column.display === false) {
                       if (
@@ -520,10 +536,9 @@ function Table<T>({
                             row={row}
                           />
                         );
-                      } else {
-                        return null;
                       }
-                  }
+                      return null;
+                    }
                     return (
                       <>
                         <TableCell
@@ -536,13 +551,13 @@ function Table<T>({
                   })}
                   {(!!onEditRow ||
                     !!onDeleteRow ||
-                    (!!rowActions && !!rowActions.length)) && (
+                    (!!rowActions && !(rowActions.length === 0))) && (
                     <td>
                       <div className="row-actions-item">
                         {onEditRow && (
                           <button
                             type="button"
-                            onClick={(event) => onEditRow(row, event)}
+                            onClick={event => onEditRow(row, event)}
                             className="action"
                           >
                             <p className="hover-item">Editar</p>
@@ -552,7 +567,7 @@ function Table<T>({
                         {onDeleteRow && (
                           <button
                             type="button"
-                            onClick={(event) => onDeleteRow(row, event)}
+                            onClick={event => onDeleteRow(row, event)}
                             className="action"
                           >
                             <p className="hover-item">Excluir</p>
@@ -564,7 +579,7 @@ function Table<T>({
                               <button
                                 key={`${Math.random() + index}`}
                                 type="button"
-                                onClick={(event) => action.onClick(row, event)}
+                                onClick={event => action.onClick(row, event)}
                                 className="action detail"
                               >
                                 {action.renderItem(row)}
@@ -587,7 +602,7 @@ function Table<T>({
       )}
 
       {!loading && !hidePagination ? (
-        <div className="pagination-box" style={{ paddingTop: "1rem" }}>
+        <div className="pagination-box" style={{ paddingTop: '1rem' }}>
           <PaginationComponent
             background_active={background_active}
             count={rows.length}

@@ -9,7 +9,7 @@ export const Container = styled.button<ContainerProps>`
   height: 24px;
   border-radius: 5px;
   border: 0.5px solid rgba(37, 75, 132, 0.25);
-  background: ${props => props.selected ? `#408CFE` : `transparent`};
+  background: ${props => (props.selected ? '#408CFE' : 'transparent')};
   margin: 0 auto;
   display: flex;
   align-items: center;

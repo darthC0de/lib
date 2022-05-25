@@ -13,8 +13,7 @@ export const Container = styled.div<TranferListItemProps>`
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;
-    background: ${props =>
-      props.selected ? '#408CFE' : 'transparent'};
+    background: ${props => (props.selected ? '#408CFE' : 'transparent')};
 
     & + .itemList {
       margin-top: 0.5rem;
@@ -44,20 +43,20 @@ export const Container = styled.div<TranferListItemProps>`
     .list {
       max-width: 450px;
       width: 100%;
-      height: ${props => props.height ? `${props.height}px` : '300px'};
+      height: ${props => (props.height ? `${props.height}px` : '300px')};
       max-height: 400px;
       min-height: 250px;
       border-radius: 9px;
       border: 1px solid #ccc;
       box-shadow: 0 0 15px 5px rgb(0 0 0 / 7%);
-      background: #FFF;
+      background: #fff;
       padding: 16px;
       overflow-y: auto;
     }
 
     &:last-child {
       .list {
-        background: #FFF;
+        background: #fff;
       }
     }
 
@@ -162,20 +161,18 @@ export const TranferListItem = styled.div<TranferListItemProps>`
   transition: none;
   justify-content: space-between;
   border-radius: 5px;
-  background: ${props =>
-    props.selected ? '#408CFE' : 'transparent'};
+  background: ${props => (props.selected ? '#408CFE' : 'transparent')};
 
   .iconItem {
     display: flex;
     .MuiSvgIcon-colorPrimary {
       transition: none !important;
-      color: ${props =>
-        props.selected ? '#fff' : '#408CFE'} !important;
+      color: ${props => (props.selected ? '#fff' : '#408CFE')} !important;
     }
   }
 
   &:hover {
-    background: #408CFE;
+    background: #408cfe;
     cursor: pointer;
 
     p {

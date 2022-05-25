@@ -7,7 +7,7 @@ interface TableSelectBoxProps {
   disabled?: boolean;
   select?: boolean;
   onClick?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | void
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | void,
   ) => void;
 }
 
@@ -17,7 +17,7 @@ const AllTableSelectBox: React.FC<TableSelectBoxProps> = ({
   onClick,
 }) => {
   const [selected, setSelected] = useState<boolean>(
-    select !== undefined ? select : false
+    select !== undefined ? select : false,
   );
 
   React.useEffect(() => {
@@ -34,7 +34,7 @@ const AllTableSelectBox: React.FC<TableSelectBoxProps> = ({
 
       if (onClick) onClick(event);
     },
-    [onClick, disabled]
+    [onClick, disabled],
   );
 
   return (

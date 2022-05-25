@@ -1,12 +1,12 @@
-const { execFile } = require("child_process");
+const { execFile } = require('child_process');
 
 (async () => {
   await execFile(
-    "cp",
+    'cp',
     [
-      process.env.OS === "Windows_NT" ? "-r" : "-r -f",
-      "./src/assets/*",
-      "./lib/assets",
+      process.env.OS === 'Windows_NT' ? '-r' : '-r -f',
+      './src/assets/*',
+      './lib/assets',
     ],
     (error, stdout, stderr) => {
       if (error) {
@@ -15,6 +15,6 @@ const { execFile } = require("child_process");
       if (stderr) {
         return;
       }
-    }
+    },
   );
 })();

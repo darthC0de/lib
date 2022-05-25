@@ -1,4 +1,4 @@
-import HyperLink from "./tools/HyperLink";
+import HyperLink from './tools/HyperLink';
 import {
   IActionRows,
   IColumn,
@@ -9,14 +9,14 @@ import {
   PropType,
   Table,
   TableCellProps,
-} from "./tools/Table";
-import Tooltip from "./tools/Tooltip";
-import TagStatus from "./tools/TagStatus";
-import TransferList from "./tools/TransferList";
-import ProgressBar from "./tools/ProgressBar";
-import SearchBox, { InputProps, HiddenInputProps } from "./tools/Search";
-import Modal, { PopUpWindowProps } from "./tools/Modal";
-import { Input, Select, SwitchButton } from "./tools/Form";
+} from './tools/Table';
+import Tooltip from './tools/Tooltip';
+import TagStatus from './tools/TagStatus';
+import TransferList from './tools/TransferList';
+import ProgressBar from './tools/ProgressBar';
+import SearchBox, { InputProps, HiddenInputProps } from './tools/Search';
+import Modal, { PopUpWindowProps } from './tools/Modal';
+import { Input, Select, SwitchButton } from './tools/Form';
 import {
   cpfMask,
   placaMask,
@@ -27,16 +27,16 @@ import {
   formatter,
   isDateValue,
   removeAccents,
-} from "./functions/validator";
-import { formatToCurrency, formatToNumber } from "./functions/formatValue";
+} from './functions/validator';
+import { formatToCurrency, formatToNumber } from './functions/formatValue';
 import Dates, {
   formatDate,
   addDays,
   compareDates,
   convertDate,
   isInRange,
-} from "./functions/formatDate";
-import SelectBox from "./tools/Table/TableBox/SelectBox";
+} from './functions/formatDate';
+import SelectBox from './tools/Table/TableBox/SelectBox';
 
 export {
   HyperLink,

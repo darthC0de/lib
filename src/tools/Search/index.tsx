@@ -137,14 +137,14 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * @example onClickEvent: () => {...}
    */
   onClickEvent?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   /**
    * @property *labelCheckbox* = Nome por ao lado do checkbox.
    * @example labelCheckbox: 'Checked'
    */
   labelCheckbox?: string;
-    onChangeEvent?(value: number | null): void;
+  onChangeEvent?(value: number | null): void;
 
   isMulti?: boolean;
 }
@@ -261,14 +261,14 @@ export interface HiddenInputProps
    * @example onClickEvent: () => {...}
    */
   onClickEvent?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   /**
    * @property *labelCheckbox* = Nome por ao lado do checkbox.
    * @example labelCheckbox: 'Checked'
    */
   labelCheckbox?: string;
-    onChangeEvent?(value: number | null): void;
+  onChangeEvent?(value: number | null): void;
 
   isMulti?: boolean;
 }
@@ -359,7 +359,7 @@ interface SearchBoxProps {
   title?: string;
   titleSubmitButton?: string;
   returnButton?: boolean;
-  clickOnReturn?(data: object): void; 
+  clickOnReturn?(data: object): void;
   new_buttons?: {
     title: string;
     style: 'secundaryButton' | 'primaryButton';
@@ -420,7 +420,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   const [visible, setVisible] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
 
-  const autoXs = (length: number): (boolean | GridSize | undefined) => {
+  const autoXs = (length: number): boolean | GridSize | undefined => {
     switch (length) {
       case 1:
         return 12;
@@ -431,9 +431,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({
       case 4:
         return 12;
     }
-  }
+  };
 
-  const autoMd = (length: number): (boolean | GridSize | undefined) => {
+  const autoMd = (length: number): boolean | GridSize | undefined => {
     switch (length) {
       case 1:
         return 12;
@@ -444,9 +444,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({
       case 4:
         return 6;
     }
-  }
+  };
 
-  const autoSm = (length: number): (boolean | GridSize | undefined) => {
+  const autoSm = (length: number): boolean | GridSize | undefined => {
     switch (length) {
       case 1:
         return 12;
@@ -457,7 +457,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
       case 4:
         return 12;
     }
-  }
+  };
 
   const handleClickOutside = (e: any) => {
     if (filterRef?.current?.contains(e.target)) {
@@ -481,7 +481,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         formRef.current?.setFieldError(inputName, message);
       }
     },
-    [formRef]
+    [formRef],
   );
 
   const clearInputs = useCallback(
@@ -490,16 +490,16 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         handleSubmitWithCancel(data);
         inputs.map(input => formRef.current?.setFieldValue(input.name, ''));
         hiddenInputs?.map(input =>
-          formRef.current?.setFieldValue(input.name, '')
+          formRef.current?.setFieldValue(input.name, ''),
         );
       } else {
         inputs.map(input => formRef.current?.setFieldValue(input.name, ''));
         hiddenInputs?.map(input =>
-          formRef.current?.setFieldValue(input.name, '')
+          formRef.current?.setFieldValue(input.name, ''),
         );
       }
     },
-    [inputs, formRef, hiddenInputs, handleSubmitWithCancel]
+    [inputs, formRef, hiddenInputs, handleSubmitWithCancel],
   );
 
   const onSubmit = useCallback(
@@ -508,7 +508,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         handleSubmit(data);
       }
     },
-    [handleSubmit]
+    [handleSubmit],
   );
 
   const onSubmitAdd = useCallback(
@@ -517,17 +517,17 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         handleAdd(data);
       }
     },
-    [handleAdd]
+    [handleAdd],
   );
 
-    const handleTraceBack = useCallback(
-      (data) => {
-        if (clickOnReturn) {
-          clickOnReturn(data);
-        }
-      },
-      [clickOnReturn]
-    );
+  const handleTraceBack = useCallback(
+    data => {
+      if (clickOnReturn) {
+        clickOnReturn(data);
+      }
+    },
+    [clickOnReturn],
+  );
 
   const openModal = useCallback(() => {
     if (createButton) {
@@ -552,12 +552,12 @@ const SearchBox: React.FC<SearchBoxProps> = ({
     <Container className="containerSearch" ref={formRef} onSubmit={onSubmit}>
       <Title
         className="searchTitle"
-        padding={advancedSearch && titleButtonOnCreate ? "1.3rem" : "1.3rem"}
+        padding={advancedSearch && titleButtonOnCreate ? '1.3rem' : '1.3rem'}
       >
         {returnButton && (
           <div className="returnClick">
             <IconButton
-              style={{ padding: "8px" }}
+              style={{ padding: '8px' }}
               onClick={handleTraceBack}
               aria-label="Voltar"
               className="returnButton"
@@ -565,14 +565,14 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               <KeyboardBackspaceRoundedIcon color="disabled" />
             </IconButton>
             <h1>
-              {title ? title : "Pesquisar"} {moreTitle ? moreTitle : null}
+              {title || 'Pesquisar'} {moreTitle || null}
             </h1>
           </div>
         )}
 
         {!returnButton && (
           <h1>
-            {title ? title : "Pesquisar"} {moreTitle ? moreTitle : null}
+            {title || 'Pesquisar'} {moreTitle || null}
           </h1>
         )}
 
@@ -582,7 +582,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
             <Button
               className="secundaryButton filter-Btn-Create"
               variant="contained"
-              style={{ whiteSpace: "nowrap" }}
+              style={{ whiteSpace: 'nowrap' }}
               onClick={openModal}
             >
               {!!titleButtonOnCreate && titleButtonOnCreate}
@@ -595,7 +595,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 <Tooltip title="Busca avançada" className="filter-Btn-Create">
                   <IconButton
                     className="primaryButton filter filter-id filterBtn"
-                    style={{ padding: "8px" }}
+                    style={{ padding: '8px' }}
                     onClick={() => setVisible(!visible)}
                     aria-label="Filtro"
                   >
@@ -613,7 +613,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                     <h1>Pesquisa Avançada</h1>
                   </div>
                   <Grid
-                    style={{ padding: "1.5rem 1rem", alignItems: "self-end" }}
+                    style={{ padding: '1.5rem 1rem', alignItems: 'self-end' }}
                     container
                     spacing={3}
                     className="filter-content"
@@ -622,7 +622,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       ({
                         name,
                         label,
-                        type = "text",
+                        type = 'text',
                         options,
                         placeholder,
                         sm,
@@ -656,7 +656,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                           ) : (
                             <p className="labelInput">{label}</p>
                           )}
-                          {type === "select" && (
+                          {type === 'select' && (
                             <Select
                               name={name}
                               key={name.toString()}
@@ -671,13 +671,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                               isMulti={isMulti}
                             />
                           )}
-                          {type === "text" && (
+                          {type === 'text' && (
                             // @ts-ignore
                             <Input
                               id={name}
                               name={name}
                               key={name.toString()}
-                              type={type || "text"}
+                              type={type || 'text'}
                               isDisabled={isDisabled}
                               placeholder={placeholder}
                               handleInputError={handleInputError}
@@ -686,7 +686,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                               {...rest}
                             />
                           )}
-                          {type === "date" && (
+                          {type === 'date' && (
                             <DatePicker
                               id={name}
                               name={name}
@@ -698,7 +698,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                               {...rest}
                             />
                           )}
-                          {type === "switch" && (
+                          {type === 'switch' && (
                             <SwitchButton
                               id={name}
                               name={name}
@@ -708,7 +708,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                               {...rest}
                             />
                           )}
-                          {type === "checkbox" && (
+                          {type === 'checkbox' && (
                             <Checkbox
                               id={name}
                               name={name}
@@ -721,7 +721,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                             />
                           )}
                         </Grid>
-                      )
+                      ),
                     )}
                     {hiddenChildren && hiddenChildren()}
                   </Grid>
@@ -731,240 +731,247 @@ const SearchBox: React.FC<SearchBoxProps> = ({
           )}
         </div>
       </Title>
-      <Divider className="dividerSearch" style={{ background: "#E1E1E1" }} />
+      <Divider className="dividerSearch" style={{ background: '#E1E1E1' }} />
       <Grid
-        style={{ padding: "1.5rem 1rem", alignItems: "self-end" }}
+        style={{ padding: '1.5rem 1rem', alignItems: 'self-end' }}
         container
         spacing={3}
       >
         {autoResponsive !== true ? (
           <>
-        {inputs.map(
-          ({
-            name,
-            label,
-            type = "text",
-            options,
-            placeholder,
-            sm,
-            xl,
-            lg,
-            xs,
-            md,
-            isRequired,
-            isLoading,
-            isDisabled,
-            styles,
-            onClickEvent,
-            labelCheckbox,
-            onChangeEvent,
-            display,
-            isMulti,
-            ...rest
-          }) => (
-            <>
-            {display ? null : (
-              <Grid
-              item
-              xl={xl}
-              lg={lg}
-              xs={xs}
-              md={md}
-              sm={sm}
-              key={name.toString()}
-            >
-              {!!label && isRequired ? (
-                <Badge badgeContent="*">
-                  <p className="labelInput">{label}</p>
-                </Badge>
-              ) : (
-                <p className="labelInput">{label}</p>
-              )}
-              {type === "select" && (
-                <Select
-                  name={name}
-                  key={name.toString()}
-                  options={options}
-                  placeholder={placeholder}
-                  handleInputError={handleInputError}
-                  isLoading={isLoading}
-                  isDisabled={isDisabled}
-                  styles={styles}
-                  onChangeEvent={onChangeEvent}
-                  // @ts-ignore
-                  isMulti={isMulti}
-                />
-              )}
-              {type === "date" && (
-                // @ts-ignore
-                <DatePicker
-                  id={name}
-                  key={name.toString()}
-                  name={name}
-                  {...rest}
-                  type="date"
-                  isDisabled={isDisabled}
-                  placeholder={placeholder}
-                />
-              )}
-              {type === "text" && (
-                // @ts-ignore
-                <Input
-                  id={name}
-                  key={name.toString()}
-                  name={name}
-                  type={type || "text"}
-                  placeholder={placeholder}
-                  handleInputError={handleInputError}
-                  isDisabled={isDisabled}
-                  // iconError={IconError}
-                  // iconSuccess={IconSuccess}
-                  {...rest}
-                />
-              )}
-              {type === "switch" && (
-                <SwitchButton
-                  id={name}
-                  name={name}
-                  key={name.toString()}
-                  type="checkbox"
-                  placeholder={placeholder}
-                  {...rest}
-                />
-              )}
-              {type === "checkbox" && (
-                <Checkbox
-                  id={name}
-                  name={name}
-                  key={name.toString()}
-                  type="checkbox"
-                  label={labelCheckbox}
-                  placeholder={placeholder}
-                  onClickEvent={onClickEvent}
-                  {...rest}
-                />
-              )}
-            </Grid>
+            {inputs.map(
+              ({
+                name,
+                label,
+                type = 'text',
+                options,
+                placeholder,
+                sm,
+                xl,
+                lg,
+                xs,
+                md,
+                isRequired,
+                isLoading,
+                isDisabled,
+                styles,
+                onClickEvent,
+                labelCheckbox,
+                onChangeEvent,
+                display,
+                isMulti,
+                ...rest
+              }) => (
+                <>
+                  {display ? null : (
+                    <Grid
+                      item
+                      xl={xl}
+                      lg={lg}
+                      xs={xs}
+                      md={md}
+                      sm={sm}
+                      key={name.toString()}
+                    >
+                      {!!label && isRequired ? (
+                        <Badge badgeContent="*">
+                          <p className="labelInput">{label}</p>
+                        </Badge>
+                      ) : (
+                        <p className="labelInput">{label}</p>
+                      )}
+                      {type === 'select' && (
+                        <Select
+                          name={name}
+                          key={name.toString()}
+                          options={options}
+                          placeholder={placeholder}
+                          handleInputError={handleInputError}
+                          isLoading={isLoading}
+                          isDisabled={isDisabled}
+                          styles={styles}
+                          onChangeEvent={onChangeEvent}
+                          // @ts-ignore
+                          isMulti={isMulti}
+                        />
+                      )}
+                      {type === 'date' && (
+                        // @ts-ignore
+                        <DatePicker
+                          id={name}
+                          key={name.toString()}
+                          name={name}
+                          {...rest}
+                          type="date"
+                          isDisabled={isDisabled}
+                          placeholder={placeholder}
+                        />
+                      )}
+                      {type === 'text' && (
+                        // @ts-ignore
+                        <Input
+                          id={name}
+                          key={name.toString()}
+                          name={name}
+                          type={type || 'text'}
+                          placeholder={placeholder}
+                          handleInputError={handleInputError}
+                          isDisabled={isDisabled}
+                          // iconError={IconError}
+                          // iconSuccess={IconSuccess}
+                          {...rest}
+                        />
+                      )}
+                      {type === 'switch' && (
+                        <SwitchButton
+                          id={name}
+                          name={name}
+                          key={name.toString()}
+                          type="checkbox"
+                          placeholder={placeholder}
+                          {...rest}
+                        />
+                      )}
+                      {type === 'checkbox' && (
+                        <Checkbox
+                          id={name}
+                          name={name}
+                          key={name.toString()}
+                          type="checkbox"
+                          label={labelCheckbox}
+                          placeholder={placeholder}
+                          onClickEvent={onClickEvent}
+                          {...rest}
+                        />
+                      )}
+                    </Grid>
+                  )}
+                </>
+              ),
             )}
-            </>
-          )
-        )}
-        {children}
-        </>
+            {children}
+          </>
         ) : (
           <>
-          {inputs.map(
-            ({
-              name,
-              label,
-              type = "text",
-              options,
-              placeholder,
-              sm,
-              xl,
-              lg,
-              xs,
-              md,
-              isRequired,
-              isLoading,
-              isDisabled,
-              styles,
-              onClickEvent,
-              labelCheckbox,
-              onChangeEvent,
-              isMulti,
-              display,
-              ...rest
-            }) => (
-              <>
-              {display ? null : (
-                  <Grid
-                  item
-                  xl={inputs.length >= 1 && inputs.length <= 4 ? true : undefined}
-                  lg={inputs.length >= 1 && inputs.length <= 4 ? true : undefined}
-                  xs={autoXs(inputs.length)}
-                  md={autoMd(inputs.length)}
-                  sm={autoSm(inputs.length)}
-                  key={name.toString()}
-                >
-                  {!!label && isRequired ? (
-                    <Badge badgeContent="*">
-                      <p className="labelInput">{label}</p>
-                    </Badge>
-                  ) : (
-                    <p className="labelInput">{label}</p>
-                  )}
-                  {type === "select" && (
-                    <Select
-                      name={name}
-                      options={options}
-                      placeholder={placeholder}
-                      handleInputError={handleInputError}
-                      isLoading={isLoading}
-                      isDisabled={isDisabled}
-                      styles={styles}
+            {inputs.map(
+              ({
+                name,
+                label,
+                type = 'text',
+                options,
+                placeholder,
+                sm,
+                xl,
+                lg,
+                xs,
+                md,
+                isRequired,
+                isLoading,
+                isDisabled,
+                styles,
+                onClickEvent,
+                labelCheckbox,
+                onChangeEvent,
+                isMulti,
+                display,
+                ...rest
+              }) => (
+                <>
+                  {display ? null : (
+                    <Grid
+                      item
+                      xl={
+                        inputs.length >= 1 && inputs.length <= 4
+                          ? true
+                          : undefined
+                      }
+                      lg={
+                        inputs.length >= 1 && inputs.length <= 4
+                          ? true
+                          : undefined
+                      }
+                      xs={autoXs(inputs.length)}
+                      md={autoMd(inputs.length)}
+                      sm={autoSm(inputs.length)}
                       key={name.toString()}
-                      onChangeEvent={onChangeEvent}
-                      // @ts-ignore
-                      isMulti={isMulti}
-                    />
+                    >
+                      {!!label && isRequired ? (
+                        <Badge badgeContent="*">
+                          <p className="labelInput">{label}</p>
+                        </Badge>
+                      ) : (
+                        <p className="labelInput">{label}</p>
+                      )}
+                      {type === 'select' && (
+                        <Select
+                          name={name}
+                          options={options}
+                          placeholder={placeholder}
+                          handleInputError={handleInputError}
+                          isLoading={isLoading}
+                          isDisabled={isDisabled}
+                          styles={styles}
+                          key={name.toString()}
+                          onChangeEvent={onChangeEvent}
+                          // @ts-ignore
+                          isMulti={isMulti}
+                        />
+                      )}
+                      {type === 'date' && (
+                        // @ts-ignore
+                        <DatePicker
+                          id={name}
+                          key={name.toString()}
+                          name={name}
+                          {...rest}
+                          type="date"
+                          isDisabled={isDisabled}
+                          placeholder={placeholder}
+                        />
+                      )}
+                      {type === 'text' && (
+                        // @ts-ignore
+                        <Input
+                          id={name}
+                          name={name}
+                          key={name.toString()}
+                          type={type || 'text'}
+                          placeholder={placeholder}
+                          handleInputError={handleInputError}
+                          isDisabled={isDisabled}
+                          // iconError={IconError}
+                          // iconSuccess={IconSuccess}
+                          {...rest}
+                        />
+                      )}
+                      {type === 'switch' && (
+                        <SwitchButton
+                          id={name}
+                          key={name.toString()}
+                          name={name}
+                          type="checkbox"
+                          placeholder={placeholder}
+                          {...rest}
+                        />
+                      )}
+                      {type === 'checkbox' && (
+                        <Checkbox
+                          id={name}
+                          name={name}
+                          type="checkbox"
+                          label={labelCheckbox}
+                          placeholder={placeholder}
+                          key={name.toString()}
+                          onClickEvent={onClickEvent}
+                          {...rest}
+                        />
+                      )}
+                    </Grid>
                   )}
-                  {type === "date" && (
-                    // @ts-ignore
-                    <DatePicker
-                      id={name}
-                      key={name.toString()}
-                      name={name}
-                      {...rest}
-                      type="date"
-                      isDisabled={isDisabled}
-                      placeholder={placeholder}
-                    />
-                  )}
-                  {type === "text" && (
-                    // @ts-ignore
-                    <Input
-                      id={name}
-                      name={name}
-                      key={name.toString()}
-                      type={type || "text"}
-                      placeholder={placeholder}
-                      handleInputError={handleInputError}
-                      isDisabled={isDisabled}
-                      // iconError={IconError}
-                      // iconSuccess={IconSuccess}
-                      {...rest}
-                    />
-                  )}
-                  {type === "switch" && (
-                    <SwitchButton
-                      id={name}
-                      key={name.toString()}
-                      name={name}
-                      type="checkbox"
-                      placeholder={placeholder}
-                      {...rest}
-                    />
-                  )}
-                  {type === "checkbox" && (
-                    <Checkbox
-                      id={name}
-                      name={name}
-                      type="checkbox"
-                      label={labelCheckbox}
-                      placeholder={placeholder}
-                      key={name.toString()}
-                      onClickEvent={onClickEvent}
-                      {...rest}
-                    />
-                  )}
-                </Grid>
-              )}
-              </>
-            )
-          )}
-          {children}
-
+                </>
+              ),
+            )}
+            {children}
           </>
         )}
       </Grid>
@@ -972,7 +979,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         <>
           <Divider
             className="dividerSearch"
-            style={{ background: "#E1E1E1" }}
+            style={{ background: '#E1E1E1' }}
           />
           <Footer className="containerFooter">
             {/* <Button
@@ -984,11 +991,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               Limpar
             </Button> */}
             {new_buttons &&
-              new_buttons.map((btn) => (
+              new_buttons.map(btn => (
                 <Button
                   type="button"
                   variant="contained"
-                  className={`${btn.style ? btn.style : 'secundaryButton'} buttonFooter`}
+                  className={`${
+                    btn.style ? btn.style : 'secundaryButton'
+                  } buttonFooter`}
                   onClick={btn.onClick}
                 >
                   {btn.title}
@@ -998,7 +1007,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               <Button
                 type="button"
                 variant="contained"
-                style={{ background: "#c8c8c8" }}
+                style={{ background: '#c8c8c8' }}
                 className="secundaryButton buttonFooter"
                 onClick={openModalImport}
               >
@@ -1014,8 +1023,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 onClick={onSubmitAdd}
                 style={
                   submitButton
-                    ? { visibility: "hidden" }
-                    : { visibility: "visible" }
+                    ? { visibility: 'hidden' }
+                    : { visibility: 'visible' }
                 }
               >
                 Adicionar
@@ -1028,11 +1037,11 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               variant="contained"
               style={
                 submitButton
-                  ? { visibility: "hidden" }
-                  : { visibility: "visible" }
+                  ? { visibility: 'hidden' }
+                  : { visibility: 'visible' }
               }
             >
-              {titleSubmitButton ? titleSubmitButton : "Pesquisar"}
+              {titleSubmitButton || 'Pesquisar'}
             </Button>
             {cancelSubmit && (
               <Button

@@ -54,9 +54,9 @@ export const Footer = styled.div`
   padding: 1.3rem;
   width: 100%;
 
-  .secundaryButton.buttonFooter{
+  .secundaryButton.buttonFooter {
     min-width: 100px;
-    height:38px;
+    height: 38px;
     font-size: 0.875rem;
     padding: 0 16px;
   }
@@ -114,28 +114,27 @@ export const Container = styled(Form)`
     font-weight: 400;
     font-size: 13px;
   }
-  .containerFilter{
-  display:flex;
-  justify-content:center;
-  .filter-Btn-Create{
-    margin-left:12px;    
-    @media(max-width: 640px){
-      font-size: 10px;
-      margin-left: 16px;
+  .containerFilter {
+    display: flex;
+    justify-content: center;
+    .filter-Btn-Create {
+      margin-left: 12px;
+      @media (max-width: 640px) {
+        font-size: 10px;
+        margin-left: 16px;
+      }
+    }
+    .filter-Btn-Create + .filter-Btn-Create {
+      margin-left: 1rem;
     }
   }
-  .filter-Btn-Create + .filter-Btn-Create{
-    margin-left:1rem;
+  .MuiIconButton-label {
+    justify-content: center;
   }
-}
-.MuiIconButton-label{
-  justify-content:center;
-}
   .filter-row {
     position: relative;
 
     .advancedContent {
-
       display: flex;
       align-items: center;
 
@@ -148,54 +147,51 @@ export const Container = styled(Form)`
       }
 
       .filter-header {
-      width: 100%;
-      border-bottom: 0.5px solid #E1E1E1;
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      color: #404040;
-      justify-content: space-between;
-    }
-    .filter-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      @media (max-width: 640px) {
-        width: 280px;
-        justify-content:center;
-      }
-      &:after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 0;
-        top: -20px;
-        left: 96.5%;
-        transform: translate(-50%);
-        border-width: 10px;
-        border-style: solid;
-        border-color: transparent transparent #ffffff transparent;
-      }
-      position: absolute;
-      top: 55px;
-      right: 0;
-      border: 0.5px solid #ffffff;
-      background: #fff;
-      -webkit-box-shadow: 0px 7px 15px rgb(0 0 0 / 7%);
-      -moz-box-shadow: 0px 7px 15px rgb(0 0 0 / 7%);
-      box-shadow: 0px 7px 15px rgb(0 0 0 / 7%);
-      border-radius: 5px;
-      width: 500px;
-      z-index: 100000;
-      .filter-content {
         width: 100%;
-        height: 100%;
+        border-bottom: 0.5px solid #e1e1e1;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        color: #404040;
+        justify-content: space-between;
+      }
+      .filter-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media (max-width: 640px) {
+          width: 280px;
+          justify-content: center;
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: -20px;
+          left: 96.5%;
+          transform: translate(-50%);
+          border-width: 10px;
+          border-style: solid;
+          border-color: transparent transparent #ffffff transparent;
+        }
+        position: absolute;
+        top: 55px;
+        right: 0;
+        border: 0.5px solid #ffffff;
+        background: #fff;
+        -webkit-box-shadow: 0px 7px 15px rgb(0 0 0 / 7%);
+        -moz-box-shadow: 0px 7px 15px rgb(0 0 0 / 7%);
+        box-shadow: 0px 7px 15px rgb(0 0 0 / 7%);
+        border-radius: 5px;
+        width: 500px;
+        z-index: 100000;
+        .filter-content {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
-
-    }
-
-    
   }
 
   .MuiBadge-badge {
@@ -221,12 +217,12 @@ export const Container = styled(Form)`
     }
     border-radius: 5px;
     background: #ffffff;
-    color: #B0B0B0;
-    border: 0.5px solid #AFAFAF;
+    color: #b0b0b0;
+    border: 0.5px solid #afafaf;
     outline: none;
   }
   & .MuiInputLabel-root {
-    color: #B0B0B0;
+    color: #b0b0b0;
   }
   & .MuiOutlinedInput-notchedOutline {
     border-color: transparent;
@@ -250,12 +246,12 @@ export const Container = styled(Form)`
     }
     border-radius: 5px;
     background: #ffffff;
-    color: #B0B0B0;
-    border: 0.5px solid #AFAFAF;
+    color: #b0b0b0;
+    border: 0.5px solid #afafaf;
     outline: none;
   }
   & .MuiInputLabel-root {
-    color: #B0B0B0;
+    color: #b0b0b0;
   }
   & .MuiOutlinedInput-notchedOutline {
     border-color: transparent;
@@ -282,7 +278,7 @@ export const Container = styled(Form)`
   .MuiInput-input {
     padding: 9px;
     border-bottom: none;
-    color: #B0B0B0;
+    color: #b0b0b0;
   }
   .MuiInput-root {
     border-radius: 5px;
@@ -295,12 +291,12 @@ export const Container = styled(Form)`
     }
   }
   .MuiSvgIcon-root {
-    color: #B0B0B0;
+    color: #b0b0b0;
     transition: all 0.3s;
   }
   .MuiCheckbox-root {
     .MuiSvgIcon-root {
-      color: #408CFE;
+      color: #408cfe;
       transition: all 0.3s;
     }
     .MuiTypography-root .MuiFormControlLabel-label .MuiTypography-body1 {
@@ -316,7 +312,7 @@ export const Container = styled(Form)`
 
   &
     .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-fullWidth.secundaryButton {
-    background: #28CE6B;
+    background: #28ce6b;
     color: #f9f9f9;
     border-radius: 5px;
     border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -326,7 +322,7 @@ export const Container = styled(Form)`
     text-transform: capitalize;
   }
   .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-fullWidth.primaryButton {
-    background: #408CFE;
+    background: #408cfe;
     color: #f9f9f9;
     border-radius: 5px;
     border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -336,7 +332,7 @@ export const Container = styled(Form)`
     text-transform: capitalize;
   }
   .MuiButtonBase-root.MuiButton-root.MuiButton-contained.secundaryButton {
-    background: #28CE6B;
+    background: #28ce6b;
     color: #f9f9f9;
     border-radius: 5px;
     border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -346,7 +342,7 @@ export const Container = styled(Form)`
     text-transform: capitalize;
   }
   .MuiButtonBase-root.MuiButton-root.MuiButton-contained.primaryButton {
-    background: #408CFE;
+    background: #408cfe;
     color: #f9f9f9;
     border-radius: 5px;
     border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -357,20 +353,19 @@ export const Container = styled(Form)`
   }
 
   .sel--is-disabled {
-      .sel__control--is-disabled {
-        /* background: #ffffff !important; */
-        background: #f2f2f2 !important;
-        border-color: #e6e6e6 !important;
-        /* color: #B0B0B0 !important; */
+    .sel__control--is-disabled {
+      /* background: #ffffff !important; */
+      background: #f2f2f2 !important;
+      border-color: #e6e6e6 !important;
+      /* color: #B0B0B0 !important; */
 
-        .sel__value-container {
-          .sel__placeholder {
-            color: #808080 !important;
-          }
+      .sel__value-container {
+        .sel__placeholder {
+          color: #808080 !important;
         }
       }
     }
-  
+  }
 
   /* TODO: Control Search */
 
@@ -407,13 +402,13 @@ export const Container = styled(Form)`
         color: #606060;
       }
       .sel__option--is-selected {
-        background: #408CFE;
+        background: #408cfe;
         color: #ffffff;
       }
 
       .sel__option--is-focused {
-        background: #408CFE;
-        color: #FFFFFF;
+        background: #408cfe;
+        color: #ffffff;
       }
     }
   }

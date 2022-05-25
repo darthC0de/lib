@@ -1,15 +1,15 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from 'react';
 
 // Material UI
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import { ButtonBase, IconButton } from "@material-ui/core";
-import RemoveRoundedIcon from "@material-ui/icons/RemoveRounded";
-import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
-import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
-import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
-import DesktopMacRoundedIcon from "@material-ui/icons/DesktopMacRounded";
-import PhoneAndroidRoundedIcon from "@material-ui/icons/PhoneAndroidRounded";
-import { Container, TranferListItem } from "./styles";
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import { ButtonBase, IconButton } from '@material-ui/core';
+import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
+import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
+import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
+import DesktopMacRoundedIcon from '@material-ui/icons/DesktopMacRounded';
+import PhoneAndroidRoundedIcon from '@material-ui/icons/PhoneAndroidRounded';
+import { Container, TranferListItem } from './styles';
 
 interface ListProps {
   transfer_id: number | string;
@@ -96,11 +96,11 @@ const TransferList: React.FC<TransferListProps> = ({
 
       const subString = Object.getOwnPropertyDescriptor(
         item,
-        String(subPath)
+        String(subPath),
       )?.value;
       const firstString = Object.getOwnPropertyDescriptor(
         item,
-        String(path)
+        String(path),
       )?.value;
 
       return {
@@ -108,7 +108,7 @@ const TransferList: React.FC<TransferListProps> = ({
         transfer_id: index,
         transfer_name: firstString,
         transfer_icon:
-          subString === "M" ? (
+          subString === 'M' ? (
             <PhoneAndroidRoundedIcon color="primary" />
           ) : (
             <DesktopMacRoundedIcon color="primary" />
@@ -126,11 +126,11 @@ const TransferList: React.FC<TransferListProps> = ({
 
       const subString = Object.getOwnPropertyDescriptor(
         item,
-        String(subPath)
+        String(subPath),
       )?.value;
       const firstString = Object.getOwnPropertyDescriptor(
         item,
-        String(path)
+        String(path),
       )?.value;
 
       return {
@@ -138,7 +138,7 @@ const TransferList: React.FC<TransferListProps> = ({
         transfer_id: `${index}-selected`,
         transfer_name: firstString,
         transfer_icon:
-          subString === "M" ? (
+          subString === 'M' ? (
             <PhoneAndroidRoundedIcon />
           ) : (
             <DesktopMacRoundedIcon />
@@ -160,37 +160,37 @@ const TransferList: React.FC<TransferListProps> = ({
   }, [setInitialList, leftList]);
 
   const moveToLeftList = useCallback(
-    (id) => {
-      const itemList = rightList.find((item) => item.transfer_id === id);
+    id => {
+      const itemList = rightList.find(item => item.transfer_id === id);
 
       if (!itemList) {
         return;
       }
 
-      const newRightList = rightList.filter((item) => item.transfer_id !== id);
+      const newRightList = rightList.filter(item => item.transfer_id !== id);
 
       setRightList([...newRightList]);
 
       setLeftList([...leftList, itemList]);
     },
-    [leftList, rightList]
+    [leftList, rightList],
   );
 
   const moveToRightList = useCallback(
-    (id) => {
-      const itemList = leftList.find((item) => item.transfer_id === id);
+    id => {
+      const itemList = leftList.find(item => item.transfer_id === id);
 
       if (!itemList) {
         return;
       }
 
-      const newLeftList = leftList.filter((item) => item.transfer_id !== id);
+      const newLeftList = leftList.filter(item => item.transfer_id !== id);
 
       setLeftList([...newLeftList]);
 
       setRightList([...rightList, itemList]);
     },
-    [leftList, rightList, setRightList, setLeftList]
+    [leftList, rightList, setRightList, setLeftList],
   );
 
   const moveAllToRightList = useCallback(() => {
@@ -209,7 +209,7 @@ const TransferList: React.FC<TransferListProps> = ({
         <h1>{title}</h1>
         <div className="list list-noselected">
           {leftList &&
-            leftList.map((item) => (
+            leftList.map(item => (
               <ButtonBase className="itemList">
                 <TranferListItem
                   key={item.transfer_id}
@@ -250,7 +250,7 @@ const TransferList: React.FC<TransferListProps> = ({
         <h1>{`${title} Selecionados`}</h1>
         <div className="list list-selected">
           {rightList &&
-            rightList.map((item) => (
+            rightList.map(item => (
               <ButtonBase className="itemList">
                 <TranferListItem
                   key={item.transfer_id}

@@ -14,7 +14,7 @@ import { Container, ButtonLink, SelectContainer } from './styles';
 
 interface IPaginationProps {
   count: number;
-  background_active?: string; 
+  background_active?: string;
   defaultNumberOfRows: number | string;
   onChangeRowsPerPage?: (number: number) => void;
   rowsPerPage: number;
@@ -25,7 +25,7 @@ interface IPaginationProps {
   page: number;
   onChangePage: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
-    page: number
+    page: number,
   ) => void;
 }
 
@@ -55,12 +55,12 @@ const PaginationComponent: React.FC<IPaginationProps> = ({
         1 +
           (newPivotPage > 3 && newPivotPage > numberOfItems - 2
             ? newPivotPage - limit
-            : 0)
+            : 0),
       );
 
       return [...Array(numberOfItems).keys()].map(key => key + sum);
     },
-    [count, rowsPerPage]
+    [count, rowsPerPage],
   );
 
   const skip = useCallback(
@@ -77,7 +77,7 @@ const PaginationComponent: React.FC<IPaginationProps> = ({
       onChangePage(event, newPage);
       setPages(calcPagesRange(newPage));
     },
-    [calcPagesRange, onChangePage, count, rowsPerPage]
+    [calcPagesRange, onChangePage, count, rowsPerPage],
   );
 
   useEffect(() => {

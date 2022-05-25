@@ -7,11 +7,11 @@
 export const formatDate = (value: string): string =>
   new Date(value)
     .toISOString()
-    .split("T")[0]
-    .split("-")
+    .split('T')[0]
+    .split('-')
     .slice(0, 3)
     .reverse()
-    .join("/");
+    .join('/');
 
 /**
  *  Função para adicionar x dias a data e retorná-lano formato Date
@@ -53,7 +53,7 @@ export function convertDate(d: any) {
     : d.constructor === String
     ? // @ts-ignore
       new Date(d)
-    : typeof d === "object"
+    : typeof d === 'object'
     ? new Date(d.year, d.month, d.date)
     : NaN;
 }
@@ -74,7 +74,7 @@ function above) and returns:
  */
 export function compareDates(
   a: string | Date | number | iDateOptions,
-  b: String | Date | number | iDateOptions
+  b: string | Date | number | iDateOptions,
 ) {
   return isFinite((a = convertDate(a).valueOf())) &&
     isFinite((b = convertDate(b).valueOf()))
@@ -99,7 +99,7 @@ Checks if date in d is between dates in start and end.
 export function isInRange(
   d: string | Date | number | iDateOptions,
   start: string | Date | number | iDateOptions,
-  end: string | Date | number | iDateOptions
+  end: string | Date | number | iDateOptions,
 ) {
   return isFinite((d = convertDate(d).valueOf())) &&
     isFinite((start = convertDate(start).valueOf())) &&

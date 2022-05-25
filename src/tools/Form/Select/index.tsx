@@ -47,7 +47,7 @@ const Select: React.FC<Props> = ({
         }
       }
     },
-    [handleInputError, messageErrorOnBlur, name]
+    [handleInputError, messageErrorOnBlur, name],
   );
 
   useEffect(() => {

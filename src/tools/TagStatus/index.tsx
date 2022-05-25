@@ -1,5 +1,5 @@
-import React from "react";
-import { Tag, TagStatusProps } from "./styles";
+import React from 'react';
+import { Tag, TagStatusProps } from './styles';
 
 /**
  * Componente de Tag, para exibição de labels na tela.
