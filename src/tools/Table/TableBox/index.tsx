@@ -384,104 +384,104 @@ function Table<T>({
                   </th>
                 )}
                 {columns?.map(column => {
-									if (column.display === 'notEmpty') {
-										if (
-											rows.findIndex((item: any) => item[column.props[0]]) > -1
-										) {
-											return (
-												<th
-													className={column.sticky ? 'sticky' : ''}
-													key={column.title}
-												>
-													<div style={column.cssTitle} className="title">
-														{column.orderable ? (
-															<SortButton
-																type="button"
-																onClick={() => onChangeSort(column)}
-																className={`${
-																	typeof column.position === 'string'
-																		? column.position
-																		: column.type === 'number'
-																			? 'right'
-																			: null
-																} icon`}
-															>
-																<h1>{column.title}</h1>
-																<img
-																	style={{
-																		transform: `rotate(${
-																			sortAscending &&
+                  if (column.display === 'notEmpty') {
+                    if (
+                      rows.findIndex((item: any) => item[column.props[0]]) > -1
+                    ) {
+                      return (
+                        <th
+                          className={column.sticky ? 'sticky' : ''}
+                          key={column.title}
+                        >
+                          <div style={column.cssTitle} className="title">
+                            {column.orderable ? (
+                              <SortButton
+                                type="button"
+                                onClick={() => onChangeSort(column)}
+                                className={`${
+                                  typeof column.position === 'string'
+                                    ? column.position
+                                    : column.type === 'number'
+                                    ? 'right'
+                                    : null
+                                } icon`}
+                              >
+                                <h1>{column.title}</h1>
+                                <img
+                                  style={{
+                                    transform: `rotate(${
+                                      sortAscending &&
                                       column.props[0] === sortBy
-																				? '180deg'
-																				: 0
-																		})`,
-																		width: '15px',
-																	}}
-																	src={
-																		column.props[0] === sortBy
-																			? TableArrow
-																			: TableFilterCell
-																	}
-																	alt={column.title}
-																/>
-															</SortButton>
-														) : (
-															<h1>{column.title}</h1>
-														)}
-													</div>
-												</th>
-											);
-										}
+                                        ? '180deg'
+                                        : 0
+                                    })`,
+                                    width: '15px',
+                                  }}
+                                  src={
+                                    column.props[0] === sortBy
+                                      ? TableArrow
+                                      : TableFilterCell
+                                  }
+                                  alt={column.title}
+                                />
+                              </SortButton>
+                            ) : (
+                              <h1>{column.title}</h1>
+                            )}
+                          </div>
+                        </th>
+                      );
+                    }
                     return null;
                   }
-									return (
-										<>
-											{column.display === false ? null : (
-												<th
-													className={column.sticky ? 'sticky' : ''}
-													key={column.title}
-												>
-													<div style={column.cssTitle} className="title">
-														{column.orderable ? (
-															<SortButton
-																type="button"
-																onClick={() => onChangeSort(column)}
-																className={`${
-																	typeof column.position === 'string'
-																		? column.position
-																		: column.type === 'number'
-																			? 'right'
-																			: null
-																} icon`}
-															>
-																<h1>{column.title}</h1>
-																<img
-																	style={{
-																		transform: `rotate(${
-																			sortAscending &&
+                  return (
+                    <>
+                      {column.display === false ? null : (
+                        <th
+                          className={column.sticky ? 'sticky' : ''}
+                          key={column.title}
+                        >
+                          <div style={column.cssTitle} className="title">
+                            {column.orderable ? (
+                              <SortButton
+                                type="button"
+                                onClick={() => onChangeSort(column)}
+                                className={`${
+                                  typeof column.position === 'string'
+                                    ? column.position
+                                    : column.type === 'number'
+                                    ? 'right'
+                                    : null
+                                } icon`}
+                              >
+                                <h1>{column.title}</h1>
+                                <img
+                                  style={{
+                                    transform: `rotate(${
+                                      sortAscending &&
                                       column.props[0] === sortBy
-																				? '180deg'
-																				: 0
-																		})`,
-																		width: '15px',
-																	}}
-																	src={
-																		column.props[0] === sortBy
-																			? TableArrow
-																			: TableFilterCell
-																	}
-																	alt={column.title}
-																/>
-															</SortButton>
-														) : (
-															<h1>{column.title}</h1>
-														)}
-													</div>
-												</th>
-											)}
-										</>
-									);
-								})}
+                                        ? '180deg'
+                                        : 0
+                                    })`,
+                                    width: '15px',
+                                  }}
+                                  src={
+                                    column.props[0] === sortBy
+                                      ? TableArrow
+                                      : TableFilterCell
+                                  }
+                                  alt={column.title}
+                                />
+                              </SortButton>
+                            ) : (
+                              <h1>{column.title}</h1>
+                            )}
+                          </div>
+                        </th>
+                      )}
+                    </>
+                  );
+                })}
                 {rowActions?.length || onEditRow || onDeleteRow ? (
                   <th>
                     <div className="title">

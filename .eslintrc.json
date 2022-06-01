@@ -31,12 +31,11 @@
         "allowNumber": false
       }
     ],
-    "import/extensions":["never", {"ignorePackages": true }]
+    "import/extensions": ["never", { "ignorePackages": true }]
   },
-  "ignorePatterns": ["**/*.test.ts","**/*.spec.ts"],
+  "ignorePatterns": ["**/*.test.ts", "**/*.spec.ts"],
   "settings": {
     "import/resolver": {
-      
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "moduleDirectory": ["node_modules", "src/"]

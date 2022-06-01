@@ -105,7 +105,8 @@ export const SimpleTabs: React.FC<ITabs> = ({ content, tabs }) => {
               <Tab
                 label={`${tab.label}`}
                 {...a11yProps(tab.anchorTab)}
-                key={String(tab.anchorTab)} />
+                key={String(tab.anchorTab)}
+              />
             );
           })}
         </Tabs>
