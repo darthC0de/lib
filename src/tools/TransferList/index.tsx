@@ -148,7 +148,7 @@ const TransferList: React.FC<TransferListProps> = ({
         transfer_name: firstString,
         // eslint-disable-next-line no-nested-ternary
         transfer_icon: iconListItem ? (
-          <div>{rendericonListItem ? rendericonListItem() : `sem icone`}</div>
+          <div>{rendericonListItem ? rendericonListItem() : 'sem icone'}</div>
         ) : (
           <ArrowRight color="primary" />
         ),

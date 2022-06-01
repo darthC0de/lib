@@ -31,7 +31,7 @@
         "allowNumber": false
       }
     ],
-    "import/extensions": ["never", { "ignorePackages": true }]
+    "import/extensions": [0]
   },
   "ignorePatterns": ["**/*.test.ts", "**/*.spec.ts"],
   "settings": {
