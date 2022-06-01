@@ -1,3 +1,8 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable no-cond-assign */
 /**
  *  Função que retorna data formatada em pt-BR
  *  @param {string} value Recebe um valor ISO
@@ -19,7 +24,7 @@ export const formatDate = (value: string): string =>
  *  @example formatDate('2010-10-01T00:00:00Z',5) => '2010-10-06T00:00:00Z'
  */
 export function addDays(date: string | Date, days: number): Date {
-  var result = new Date(date);
+  const result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
 }
@@ -76,8 +81,9 @@ export function compareDates(
   a: string | Date | number | iDateOptions,
   b: string | Date | number | iDateOptions,
 ) {
-  return isFinite((a = convertDate(a).valueOf())) &&
-    isFinite((b = convertDate(b).valueOf()))
+  // eslint-disable-next-line no-return-assign
+  return Number.isFinite((a = convertDate(a).valueOf())) &&
+    Number.isFinite((b = convertDate(b).valueOf()))
     ? // @ts-ignore
       (a > b) - (a < b)
     : NaN;
@@ -101,9 +107,9 @@ export function isInRange(
   start: string | Date | number | iDateOptions,
   end: string | Date | number | iDateOptions,
 ) {
-  return isFinite((d = convertDate(d).valueOf())) &&
-    isFinite((start = convertDate(start).valueOf())) &&
-    isFinite((end = convertDate(end).valueOf()))
+  return Number.isFinite((d = convertDate(d).valueOf())) &&
+    Number.isFinite((start = convertDate(start).valueOf())) &&
+    Number.isFinite((end = convertDate(end).valueOf()))
     ? start <= d && d <= end
     : NaN;
 }

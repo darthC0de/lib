@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line no-use-before-define
 import React, {
   InputHTMLAttributes,
   useRef,
@@ -23,7 +24,9 @@ import {
   Tooltip,
 } from '@material-ui/core';
 import { OptionTypeBase, Styles } from 'react-select';
+// eslint-disable-next-line import/extensions
 import { Input, Select, DatePicker, SwitchButton, Checkbox } from '../Form';
+// eslint-disable-next-line import/extensions
 import { Container, Title, Footer } from './styles';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -56,6 +59,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * @property *options* = Opções do input *Select*.
    * @example options: [{label: 'Hello', value: 1}, ...]
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   options?: object[];
   /**
    * @property *messageErrorOnBlue* = Apresenta uma mensagem de erro caso a validação utilizando *Yup* esteja incorreta.
@@ -180,6 +184,7 @@ export interface HiddenInputProps
    * @property *options* = Opções do input *Select*.
    * @example options: [{label: 'Hello', value: 1}, ...]
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   options?: object[];
   /**
    * @property *messageErrorOnBlue* = Apresenta uma mensagem de erro caso a validação utilizando *Yup* esteja incorreta.
@@ -318,12 +323,15 @@ interface SearchBoxProps {
    * @property *handleSubmit* = Ação do botão *`submit`*, necessário passar *`data`*.
    * @example handleSubmit={submitFunction}
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   handleSubmit?(data: object): void;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   handleAdd?(data: object): void;
   /**
    * @property *handleSubmitWithCancel* = Ação do botão *`cancel`*, necessário passar *`data`*.
    * @example handleSubmitWithCancel={cancelFunction}
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   handleSubmitWithCancel?(data: object): void;
   /**
    * @property *submitButton* = Desabilita o botão *`submit`*.
@@ -334,6 +342,7 @@ interface SearchBoxProps {
    * @property *handleCreate* = Ação do botão *`salvar`* ou *`criar`* dentro do Search.
    * @example handleCreate={createFunction}
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   handleCreate?(data: object): void;
   /**
    * @property *hiddenChildren* = Permite criar inputs dentro de *`Filtros Avançados`*.
@@ -341,7 +350,7 @@ interface SearchBoxProps {
    */
   hiddenChildren?(): void;
   /**
-   * @property *cancelSubmit* = Habilita o botão de cancelar.
+   * @property *cancelSubmit* = Habilita o botão de cancelar que permite limpar os filtros, além de permitir a execução de uma ação de cancelamento.
    * @example cancelSubmit={true}
    */
   cancelSubmit?: boolean;
@@ -359,10 +368,11 @@ interface SearchBoxProps {
   title?: string;
   titleSubmitButton?: string;
   returnButton?: boolean;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   clickOnReturn?(data: object): void;
   new_buttons?: {
     title: string;
-    style: 'secundaryButton' | 'primaryButton';
+    style: 'secundaryButton' | 'primaryButton' | 'dangerButton';
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   }[];
   autoResponsive?: boolean;
@@ -385,7 +395,7 @@ interface SearchBoxProps {
  * @param {InputProps} hiddenChildren Permite criar inputs dentro de *`Filtros Avançados`*.
  * @param {InputProps} hiddenInputs Permite criar inputs dentro de *`Filtros Avançados`*.
  * @param {InputProps} inputs Cria inputs a partir de um JSON no formato da interface InputProps.
- * @param {boolean=} cancelSubmit Habilita o botão de cancelar.
+ * @param {boolean=} cancelSubmit Habilita o botão de cancelar. Este botão permite limpar os filtros.
  * @param rightChildren Poderá criar React.Components ao na barra de título do search.
  */
 
@@ -421,6 +431,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   const filterRef = useRef<HTMLDivElement>(null);
 
   const autoXs = (length: number): boolean | GridSize | undefined => {
+    // eslint-disable-next-line default-case
     switch (length) {
       case 1:
         return 12;
@@ -434,6 +445,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   };
 
   const autoMd = (length: number): boolean | GridSize | undefined => {
+    // eslint-disable-next-line default-case
     switch (length) {
       case 1:
         return 12;
@@ -447,6 +459,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   };
 
   const autoSm = (length: number): boolean | GridSize | undefined => {
+    // eslint-disable-next-line default-case
     switch (length) {
       case 1:
         return 12;
@@ -585,7 +598,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               style={{ whiteSpace: 'nowrap' }}
               onClick={openModal}
             >
-              {!!titleButtonOnCreate && titleButtonOnCreate}
+              {!(titleButtonOnCreate == null) && titleButtonOnCreate}
             </Button>
           )}
           {advancedSearch && (
@@ -649,7 +662,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                           sm={sm}
                           key={name.toString()}
                         >
-                          {!!label && isRequired ? (
+                          {!(label == null) && (isRequired ?? false) ? (
                             <Badge badgeContent="*">
                               <p className="labelInput">{label}</p>
                             </Badge>
@@ -677,6 +690,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                               id={name}
                               name={name}
                               key={name.toString()}
+                              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                               type={type || 'text'}
                               isDisabled={isDisabled}
                               placeholder={placeholder}
@@ -763,7 +777,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 ...rest
               }) => (
                 <>
-                  {display ? null : (
+                  {display ?? false ? null : (
                     <Grid
                       item
                       xl={xl}
@@ -773,7 +787,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       sm={sm}
                       key={name.toString()}
                     >
-                      {!!label && isRequired ? (
+                      {!(label == null) && (isRequired ?? false) ? (
                         <Badge badgeContent="*">
                           <p className="labelInput">{label}</p>
                         </Badge>
@@ -813,6 +827,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                           id={name}
                           key={name.toString()}
                           name={name}
+                          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                           type={type || 'text'}
                           placeholder={placeholder}
                           handleInputError={handleInputError}
@@ -877,7 +892,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 ...rest
               }) => (
                 <>
-                  {display ? null : (
+                  {display ?? false ? null : (
                     <Grid
                       item
                       xl={
@@ -895,7 +910,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       sm={autoSm(inputs.length)}
                       key={name.toString()}
                     >
-                      {!!label && isRequired ? (
+                      {!(label == null) && (isRequired ?? false) ? (
                         <Badge badgeContent="*">
                           <p className="labelInput">{label}</p>
                         </Badge>
@@ -935,6 +950,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                           id={name}
                           name={name}
                           key={name.toString()}
+                          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                           type={type || 'text'}
                           placeholder={placeholder}
                           handleInputError={handleInputError}
@@ -996,6 +1012,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                   type="button"
                   variant="contained"
                   className={`${
+                    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
                     btn.style ? btn.style : 'secundaryButton'
                   } buttonFooter`}
                   onClick={btn.onClick}
@@ -1015,6 +1032,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               </Button>
             )}
 
+            {/* // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
             {addButton && (
               <Button
                 className="secundaryButton buttonFooter"
@@ -1022,9 +1040,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 variant="contained"
                 onClick={onSubmitAdd}
                 style={
-                  submitButton
-                    ? { visibility: 'hidden' }
-                    : { visibility: 'visible' }
+                  submitButton ? { display: 'none' } : { display: 'block' }
                 }
               >
                 Adicionar
@@ -1035,11 +1051,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               className="primaryButton buttonFooter"
               type="submit"
               variant="contained"
-              style={
-                submitButton
-                  ? { visibility: 'hidden' }
-                  : { visibility: 'visible' }
-              }
+              style={submitButton ? { display: 'none' } : { display: 'block' }}
             >
               {titleSubmitButton || 'Pesquisar'}
             </Button>

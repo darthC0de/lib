@@ -10,33 +10,34 @@ on:
     - cron: '0 3 * * 1'
 
 jobs:
-  CodeQuality:
-    name: Analyze
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ['javascript', 'typescript']
+  # Code quality analyzes wont work due to repo privacy.
+  # CodeQuality:
+  #   name: Analyze
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       language: ['javascript', 'typescript']
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
 
-      # Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
+  #     # Initializes the CodeQL tools for scanning.
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v1
+  #       with:
+  #         languages: ${{ matrix.language }}
 
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v1
+  #     - name: Autobuild
+  #       uses: github/codeql-action/autobuild@v1
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v1
   BuildValidation:
     runs-on: ubuntu-latest
     strategy:
@@ -50,6 +51,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
       - run: yarn
+      - run: yarn test
       - run: yarn build
   Audit:
     runs-on: ubuntu-latest

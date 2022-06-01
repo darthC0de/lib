@@ -37,6 +37,7 @@ import Dates, {
   isInRange,
 } from './functions/formatDate';
 import SelectBox from './tools/Table/TableBox/SelectBox';
+import { SimpleTabs, ITabs } from './tools/Tabs';
 
 export {
   HyperLink,
@@ -79,4 +80,6 @@ export {
   compareDates,
   convertDate,
   isInRange,
+  SimpleTabs,
+  ITabs,
 };

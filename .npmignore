@@ -1,2 +1,5 @@
 src
 node_modules
+__tests__
+.vscode
+.npmrc
