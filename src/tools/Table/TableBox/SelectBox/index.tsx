@@ -15,7 +15,7 @@ const TableSelectBox: React.FC<TableSelectBoxProps> = ({
   onClick,
 }) => {
   const [selected, setSelected] = useState(
-    select !== undefined ? select : false
+    select !== undefined ? select : false,
   );
 
   const handleSelected = useCallback(
@@ -27,7 +27,7 @@ const TableSelectBox: React.FC<TableSelectBoxProps> = ({
 
       if (onClick) onClick(event);
     },
-    [onClick, disabled]
+    [onClick, disabled],
   );
 
   return (

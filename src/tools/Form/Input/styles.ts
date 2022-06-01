@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   error: boolean;
@@ -13,9 +13,9 @@ export const Container = styled.div<ContainerProps>`
     border: 1px solid #afafaf;
     border-radius: 5px;
     &:focus-within {
-        box-shadow: 0 0 0 0.5px #2684ff;
-        border: 0.5px solid #2684ff;
-      }
+      box-shadow: 0 0 0 0.5px #2684ff;
+      border: 0.5px solid #2684ff;
+    }
     input {
       flex: 1;
       height: 100%;
@@ -26,14 +26,12 @@ export const Container = styled.div<ContainerProps>`
       font-size: 13px;
       overflow: auto;
       color: #555555;
-      ${(props) =>
+      ${props =>
         props.error &&
         css`
-          border-color: ${!props.error ? "#2684ff" : "#e12325"};
-          box-shadow: 0 0 0 0.5px ${!props.error ? "#2684ff" : "#e12325"};
+          border-color: ${!props.error ? '#2684ff' : '#e12325'};
+          box-shadow: 0 0 0 0.5px ${!props.error ? '#2684ff' : '#e12325'};
         `}
-
-      
 
       &::placeholder {
         font-size: 13px;

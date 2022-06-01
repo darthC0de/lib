@@ -4,10 +4,10 @@ import React, {
   InputHTMLAttributes,
   useCallback,
   useState,
-} from "react";
-import { useField } from "@unform/core";
+} from 'react';
+import { useField } from '@unform/core';
 
-import { Container } from "./styles";
+import { Container } from './styles';
 
 interface inputErrorProps {
   inputName: string;
@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: "value",
+      path: 'value',
       setValue: (ref, value) => {
         ref.value = value;
         setSuccess(false);
@@ -52,7 +52,7 @@ const Input: React.FC<InputProps> = ({
   }, [fieldName, registerField, clearError]);
 
   const handleBlur = useCallback(
-    (event) => {
+    event => {
       if (!event.target.value) {
         if (!!handleInputError && !!messageErrorOnBlur) {
           handleInputError({
@@ -62,7 +62,7 @@ const Input: React.FC<InputProps> = ({
         }
       } else setSuccess(true);
     },
-    [handleInputError, messageErrorOnBlur, name]
+    [handleInputError, messageErrorOnBlur, name],
   );
 
   return (
@@ -84,10 +84,7 @@ const Input: React.FC<InputProps> = ({
         />
         {!!icon && (
           <div className="icon">
-            <img
-              src={error ? (iconError ? iconError : icon) : icon}
-              alt={name}
-            />
+            <img src={error ? iconError || icon : icon} alt={name} />
           </div>
         )}
       </div>

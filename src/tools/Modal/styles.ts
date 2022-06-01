@@ -40,7 +40,7 @@ export const Container = styled(Form)`
         color: #404040;
       }
 
-      border-bottom: 1px solid #E1E1E1;
+      border-bottom: 1px solid #e1e1e1;
     }
 
     .popupBody {
@@ -48,7 +48,7 @@ export const Container = styled(Form)`
     }
 
     .popupFooter {
-      border-top: 1px solid #E1E1E1;
+      border-top: 1px solid #e1e1e1;
 
       .buttons {
         padding: 1rem 1.5rem;
@@ -64,7 +64,7 @@ export const Container = styled(Form)`
           border-radius: 5px;
           font-weight: 500;
           color: #f9f9f9;
-          background: #408CFE;
+          background: #408cfe;
           transition: background 0.3s;
 
           & + button {
@@ -72,7 +72,7 @@ export const Container = styled(Form)`
           }
 
           &.submit {
-            background: #28CE6B;
+            background: #28ce6b;
             color: #f9f9f9;
           }
 
@@ -101,7 +101,7 @@ export const Detail = styled.div`
   .headerReceive {
     width: 100%;
     padding: 16px;
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid #e1e1e1;
     h3 {
       color: #404040;
       font-size: 16px;
@@ -176,7 +176,7 @@ export const Detail = styled.div`
     .popupHeader {
       width: 100%;
 
-      border-bottom: 1px solid #E1E1E1;
+      border-bottom: 1px solid #e1e1e1;
 
       display: flex;
       justify-content: space-between;
@@ -205,7 +205,7 @@ export const Detail = styled.div`
       display: flex;
       justify-content: space-between;
       margin: 0.7rem 0;
-      border-bottom: 1px solid #E1E1E1;
+      border-bottom: 1px solid #e1e1e1;
 
       flex-wrap: wrap;
 
@@ -231,7 +231,7 @@ export const Detail = styled.div`
             border: none;
             transition: color 0.3s !important;
             transition-duration: 0.3s !important;
-            border-color: #E1E1E1;
+            border-color: #e1e1e1;
             transition-delay: 0ms !important;
           }
 
@@ -281,12 +281,12 @@ export const Detail = styled.div`
         }
         border-radius: 5px;
         background: #ffffff;
-        color: #B0B0B0;
+        color: #b0b0b0;
         border: 0.5px solid rgba(37, 75, 132, 0.1);
         outline: none;
       }
       & .MuiInputLabel-root {
-        color: #B0B0B0;
+        color: #b0b0b0;
       }
       & .MuiOutlinedInput-notchedOutline {
         border-color: transparent;
@@ -310,12 +310,12 @@ export const Detail = styled.div`
         }
         border-radius: 5px;
         background: #ffffff;
-        color: #B0B0B0;
+        color: #b0b0b0;
         border: 0.5px solid rgba(37, 75, 132, 0.1);
         outline: none;
       }
       & .MuiInputLabel-root {
-        color: #B0B0B0;
+        color: #b0b0b0;
       }
       & .MuiOutlinedInput-notchedOutline {
         border-color: transparent;
@@ -342,7 +342,7 @@ export const Detail = styled.div`
       .MuiInput-input {
         padding: 9px;
         border-bottom: none;
-        color: #B0B0B0;
+        color: #b0b0b0;
       }
       .MuiInput-root {
         border-radius: 5px;
@@ -355,12 +355,12 @@ export const Detail = styled.div`
         }
       }
       .MuiSvgIcon-root {
-        color: #B0B0B0;
+        color: #b0b0b0;
         transition: all 0.3s;
       }
       .MuiCheckbox-root {
         .MuiSvgIcon-root {
-          color: #408CFE;
+          color: #408cfe;
           transition: all 0.3s;
         }
         .MuiTypography-root .MuiFormControlLabel-label .MuiTypography-body1 {
@@ -376,7 +376,7 @@ export const Detail = styled.div`
 
       &
         .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-fullWidth.secundaryButton {
-        background: #28CE6B;
+        background: #28ce6b;
         color: #f9f9f9;
         border-radius: 5px;
         border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -386,7 +386,7 @@ export const Detail = styled.div`
         text-transform: capitalize;
       }
       .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-fullWidth.primaryButton {
-        background: #408CFE;
+        background: #408cfe;
         color: #f9f9f9;
         border-radius: 5px;
         border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -396,7 +396,7 @@ export const Detail = styled.div`
         text-transform: capitalize;
       }
       .MuiButtonBase-root.MuiButton-root.MuiButton-contained.secundaryButton {
-        background: #28CE6B;
+        background: #28ce6b;
         color: #f9f9f9;
         border-radius: 5px;
         border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -406,7 +406,7 @@ export const Detail = styled.div`
         text-transform: capitalize;
       }
       .MuiButtonBase-root.MuiButton-root.MuiButton-contained.primaryButton {
-        background: #408CFE;
+        background: #408cfe;
         color: #f9f9f9;
         border-radius: 5px;
         border: 0.5px solid rgba(37, 75, 132, 0.25);
@@ -441,13 +441,13 @@ export const Detail = styled.div`
             color: #606060;
           }
           .sel__option--is-selected {
-            background: #408CFE;
+            background: #408cfe;
             color: #ffffff;
           }
 
           .sel__option--is-focused {
-            background: #408CFE;
-            color: #FFFFFF;
+            background: #408cfe;
+            color: #ffffff;
           }
         }
       }
@@ -463,7 +463,7 @@ export const Detail = styled.div`
     .popupFooter {
       display: flex;
       width: 100%;
-      border-top: 1px solid #E1E1E1;
+      border-top: 1px solid #e1e1e1;
       margin-top: 1rem;
 
       .buttons {
@@ -477,7 +477,7 @@ export const Detail = styled.div`
           border-radius: 5px;
           font-weight: 500;
           color: #f9f9f9;
-          background: #408CFE;
+          background: #408cfe;
           transition: background 0.3s;
 
           & + button {
@@ -485,7 +485,7 @@ export const Detail = styled.div`
           }
 
           &.submit {
-            background: #28CE6B;
+            background: #28ce6b;
             color: #f9f9f9;
           }
           &.exclusion {
@@ -493,7 +493,7 @@ export const Detail = styled.div`
             color: #f9f9f9;
           }
           &.reset {
-            background: #FFBE17;
+            background: #ffbe17;
             color: #f9f9f9;
           }
         }
@@ -510,7 +510,7 @@ export const TableContent = styled.div`
 
 export const Import = styled.div<ImportProps>`
   width: 100%;
-  border-top: 1px solid #E1E1E1;
+  border-top: 1px solid #e1e1e1;
   .import {
     padding: 1rem 1.5rem;
   }
@@ -536,7 +536,7 @@ export const Import = styled.div<ImportProps>`
         a {
           display: block;
           padding: 0 0.5rem;
-          color: #408CFE;
+          color: #408cfe;
         }
       }
     }

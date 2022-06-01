@@ -60,7 +60,7 @@ const DateInput: React.FC<InputProps> = ({
         }
       } else return;
     },
-    [handleInputError, messageErrorOnBlur, name]
+    [handleInputError, messageErrorOnBlur, name],
   );
 
   return (
