@@ -1,0 +1,3 @@
+- [Rodrigo Cordeiro](https://github.com/rodcordeiro)
+- [Gabriel A. Bizzi](https://github.com/GabrielBizzi)
+- [Juann Pablo Brandão Santos](https://github.com/juannBrandao)
