@@ -60,6 +60,12 @@ export const Footer = styled.div`
     font-size: 0.875rem;
     padding: 0 16px;
   }
+  .dangerButton.buttonFooter {
+    min-width: 100px;
+    height: 38px;
+    font-size: 0.875rem;
+    padding: 0 16px;
+  }
 
   .buttonFooter {
     & + .buttonFooter {
@@ -313,6 +319,16 @@ export const Container = styled(Form)`
   &
     .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-fullWidth.secundaryButton {
     background: #28ce6b;
+    color: #f9f9f9;
+    border-radius: 5px;
+    border: 0.5px solid rgba(37, 75, 132, 0.25);
+    font-family: Poppins, sans-serif;
+    box-shadow: none;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-fullWidth.dangerButton {
+    background: #f43605;
     color: #f9f9f9;
     border-radius: 5px;
     border: 0.5px solid rgba(37, 75, 132, 0.25);

@@ -14,21 +14,35 @@ export const Container = styled.div<TranferListItemProps>`
     justify-content: space-between;
     border-radius: 5px;
     background: ${props => (props.selected ? '#408CFE' : 'transparent')};
-
+    .sectioButtons {
+      display: flex;
+      flex-direction: row;
+    }
     & + .itemList {
       margin-top: 0.5rem;
     }
   }
-
+  .flexColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .flexRow {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
   .block {
-    max-width: 45%;
+    /* max-width: 45%; */
+    width: 100%;
     flex: 1;
     align-self: flex-start;
 
     &:last-child {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      /* align-items: flex-end; */
     }
 
     h1 {
@@ -43,15 +57,18 @@ export const Container = styled.div<TranferListItemProps>`
     .list {
       max-width: 450px;
       width: 100%;
-      height: ${props => (props.height ? `${props.height}px` : '300px')};
+      height: ${props => (props.height ? `${props.height}px` : '75px')};
       max-height: 400px;
-      min-height: 250px;
+      min-height: 75px;
       border-radius: 9px;
       border: 1px solid #ccc;
       box-shadow: 0 0 15px 5px rgb(0 0 0 / 7%);
       background: #fff;
       padding: 16px;
       overflow-y: auto;
+      &.L1 {
+        height: 100% !important;
+      }
     }
 
     &:last-child {
