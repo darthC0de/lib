@@ -135,11 +135,11 @@ const TransferList: React.FC<TransferListProps> = ({
 
       const subString = Object.getOwnPropertyDescriptor(
         item,
-        String(subPath),
+        String(subPath)
       )?.value;
       const firstString = Object.getOwnPropertyDescriptor(
         item,
-        String(path),
+        String(path)
       )?.value;
 
       return {
@@ -148,7 +148,7 @@ const TransferList: React.FC<TransferListProps> = ({
         transfer_name: firstString,
         // eslint-disable-next-line no-nested-ternary
         transfer_icon: iconListItem ? (
-          <div>{rendericonListItem ? rendericonListItem() : 'sem icone'}</div>
+          <div>{rendericonListItem ? rendericonListItem() : `sem icone`}</div>
         ) : (
           <ArrowRight color="primary" />
         ),
@@ -165,11 +165,11 @@ const TransferList: React.FC<TransferListProps> = ({
 
       const subString = Object.getOwnPropertyDescriptor(
         item,
-        String(subPath),
+        String(subPath)
       )?.value;
       const firstString = Object.getOwnPropertyDescriptor(
         item,
-        String(path),
+        String(path)
       )?.value;
 
       return {
@@ -195,11 +195,11 @@ const TransferList: React.FC<TransferListProps> = ({
 
       const subString = Object.getOwnPropertyDescriptor(
         item,
-        String(subPath),
+        String(subPath)
       )?.value;
       const firstString = Object.getOwnPropertyDescriptor(
         item,
-        String(path),
+        String(path)
       )?.value;
 
       return {
@@ -245,7 +245,7 @@ const TransferList: React.FC<TransferListProps> = ({
 
       setLeftList([...leftList, itemList]);
     },
-    [leftList, rightList],
+    [leftList, rightList]
   );
 
   const moveToRightList = useCallback(
@@ -262,7 +262,7 @@ const TransferList: React.FC<TransferListProps> = ({
 
       setRightList([...rightList, itemList]);
     },
-    [leftList, rightList, setRightList, setLeftList],
+    [leftList, rightList, setRightList, setLeftList]
   );
   const moveToLeftListtwo = useCallback(
     id => {
@@ -273,14 +273,14 @@ const TransferList: React.FC<TransferListProps> = ({
       }
 
       const newRightListtwo = rightListtwo.filter(
-        item => item.transfer_id !== id,
+        item => item.transfer_id !== id
       );
 
       setRightListtwo([...newRightListtwo]);
 
       setLeftList([...leftList, itemList]);
     },
-    [leftList, rightListtwo],
+    [leftList, rightListtwo]
   );
   const moveToRightListtwo = useCallback(
     id => {
@@ -296,7 +296,7 @@ const TransferList: React.FC<TransferListProps> = ({
 
       setRightListtwo([...rightListtwo, itemList]);
     },
-    [leftList, rightListtwo],
+    [leftList, rightListtwo]
   );
 
   const moveAllToRightList = useCallback(() => {

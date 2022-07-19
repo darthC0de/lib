@@ -7,6 +7,7 @@ interface SvgProps extends SVGAttributes<HTMLOrSVGElement> {
 }
 
 const Besni: React.FC<SvgProps> = ({ as, ...rest }) => {
+  // @ts-ignore
   const { colors } = React.useContext(ThemeContext);
   return (
     <Svg {...rest} id={as} key={as}>

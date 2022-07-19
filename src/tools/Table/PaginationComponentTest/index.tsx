@@ -147,6 +147,7 @@ const PaginationComponent: React.FC<IPaginationProps> = ({
       <div className="pages">
         <div className="select">
           <SelectContainer>
+            {/* @ts-ignore */}
             <ReactSelect
               classNamePrefix="sel"
               name="quantity"

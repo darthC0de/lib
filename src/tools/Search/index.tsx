@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
@@ -25,7 +27,14 @@ import {
 } from '@material-ui/core';
 import { OptionTypeBase, Styles } from 'react-select';
 // eslint-disable-next-line import/extensions
-import { Input, Select, DatePicker, SwitchButton, Checkbox } from '../Form';
+import {
+  Input,
+  InputMultiple,
+  Select,
+  DatePicker,
+  SwitchButton,
+  Checkbox,
+} from '../Form';
 // eslint-disable-next-line import/extensions
 import { Container, Title, Footer } from './styles';
 
@@ -54,7 +63,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * @property *type* = Tipo do input.
    * @example type: 'select' | 'text' | 'date' | 'switch' | 'checkbox'
    */
-  type?: 'text' | 'date' | 'select' | 'switch' | 'checkbox';
+  type?: 'text' | 'MultipleText' | 'date' | 'select' | 'switch' | 'checkbox';
   /**
    * @property *options* = Opções do input *Select*.
    * @example options: [{label: 'Hello', value: 1}, ...]
@@ -141,7 +150,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * @example onClickEvent: () => {...}
    */
   onClickEvent?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   /**
    * @property *labelCheckbox* = Nome por ao lado do checkbox.
@@ -149,7 +158,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    */
   labelCheckbox?: string;
   onChangeEvent?(value: number | null): void;
-
   isMulti?: boolean;
 }
 
@@ -179,7 +187,7 @@ export interface HiddenInputProps
    * @property *type* = Tipo do input.
    * @example type: 'select' | 'text' | 'date' | 'switch' | 'checkbox'
    */
-  type?: 'text' | 'date' | 'select' | 'switch' | 'checkbox';
+  type?: 'text' | 'MultipleText' | 'date' | 'select' | 'switch' | 'checkbox';
   /**
    * @property *options* = Opções do input *Select*.
    * @example options: [{label: 'Hello', value: 1}, ...]
@@ -266,7 +274,7 @@ export interface HiddenInputProps
    * @example onClickEvent: () => {...}
    */
   onClickEvent?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   /**
    * @property *labelCheckbox* = Nome por ao lado do checkbox.
@@ -325,6 +333,7 @@ interface SearchBoxProps {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   handleSubmit?(data: object): void;
+
   // eslint-disable-next-line @typescript-eslint/ban-types
   handleAdd?(data: object): void;
   /**
@@ -376,6 +385,10 @@ interface SearchBoxProps {
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   }[];
   autoResponsive?: boolean;
+  /**
+   * @property *clearInputs* = Habilita a limpeza do filtro
+   */
+  clearInputs?: boolean;
 }
 
 /**
@@ -397,6 +410,7 @@ interface SearchBoxProps {
  * @param {InputProps} inputs Cria inputs a partir de um JSON no formato da interface InputProps.
  * @param {boolean=} cancelSubmit Habilita o botão de cancelar. Este botão permite limpar os filtros.
  * @param rightChildren Poderá criar React.Components ao na barra de título do search.
+ * @param {boolean} clearInputs Limpa os inputs após a execução do submit
  */
 
 const SearchBox: React.FC<SearchBoxProps> = ({
@@ -424,6 +438,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   titleSubmitButton,
   new_buttons,
   autoResponsive = false,
+  clearInputs = false,
 }) => {
   const ownRef = useRef<FormHandles>(null);
   const formRef = searchBoxRef || ownRef;
@@ -494,43 +509,52 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         formRef.current?.setFieldError(inputName, message);
       }
     },
-    [formRef],
+    [formRef]
   );
 
-  const clearInputs = useCallback(
+  const clearInputsFn = useCallback(
     data => {
       if (handleSubmitWithCancel) {
         handleSubmitWithCancel(data);
         inputs.map(input => formRef.current?.setFieldValue(input.name, ''));
         hiddenInputs?.map(input =>
-          formRef.current?.setFieldValue(input.name, ''),
+          formRef.current?.setFieldValue(input.name, '')
         );
       } else {
         inputs.map(input => formRef.current?.setFieldValue(input.name, ''));
         hiddenInputs?.map(input =>
-          formRef.current?.setFieldValue(input.name, ''),
+          formRef.current?.setFieldValue(input.name, '')
         );
       }
     },
-    [inputs, formRef, hiddenInputs, handleSubmitWithCancel],
+    [inputs, formRef, hiddenInputs, handleSubmitWithCancel]
   );
 
   const onSubmit = useCallback(
     data => {
+      console.log('data', data);
       if (handleSubmit) {
-        handleSubmit(data);
+        Promise.resolve(handleSubmit(data)).then(() => {
+          if (clearInputs) {
+            clearInputsFn(data);
+          }
+        });
       }
     },
-    [handleSubmit],
+    [handleSubmit, clearInputs, clearInputsFn]
   );
 
   const onSubmitAdd = useCallback(
     data => {
       if (handleAdd) {
-        handleAdd(data);
+        Promise.resolve(handleAdd(data)).then(() => {
+          if (clearInputs) {
+            clearInputsFn(data);
+          }
+        });
       }
     },
-    [handleAdd],
+    [clearInputs, clearInputsFn, handleAdd]
   );
 
   const handleTraceBack = useCallback(
@@ -539,7 +563,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         clickOnReturn(data);
       }
     },
-    [clickOnReturn],
+    [clickOnReturn]
   );
 
   const openModal = useCallback(() => {
@@ -578,14 +602,16 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               <KeyboardBackspaceRoundedIcon color="disabled" />
             </IconButton>
             <h1>
-              {title || 'Pesquisar'} {moreTitle || null}
+              {title || 'Pesquisar'}
+              {moreTitle || null}
             </h1>
           </div>
         )}
 
         {!returnButton && (
           <h1>
-            {title || 'Pesquisar'} {moreTitle || null}
+            {title || 'Pesquisar'}
+            {moreTitle || null}
           </h1>
         )}
 
@@ -651,6 +677,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                         labelCheckbox,
                         onChangeEvent,
                         isMulti,
+
                         ...rest
                       }) => (
                         <Grid
@@ -700,6 +727,22 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                               {...rest}
                             />
                           )}
+                          {type === 'MultipleText' && (
+                            // @ts-ignore
+                            <InputMultiple
+                              id={name}
+                              name={name}
+                              key={name.toString()}
+                              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                              type={type || 'text'}
+                              isDisabled={isDisabled}
+                              placeholder={placeholder}
+                              handleInputError={handleInputError}
+                              // iconError={IconError}
+                              // iconSuccess={IconSuccess}
+                              {...rest}
+                            />
+                          )}
                           {type === 'date' && (
                             <DatePicker
                               id={name}
@@ -735,7 +778,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                             />
                           )}
                         </Grid>
-                      ),
+                      )
                     )}
                     {hiddenChildren && hiddenChildren()}
                   </Grid>
@@ -774,6 +817,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 onChangeEvent,
                 display,
                 isMulti,
+
                 ...rest
               }) => (
                 <>
@@ -837,6 +881,22 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                           {...rest}
                         />
                       )}
+                      {type === 'MultipleText' && (
+                        // @ts-ignore
+                        <InputMultiple
+                          id={name}
+                          name={name}
+                          key={name.toString()}
+                          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                          type={type || 'text'}
+                          isDisabled={isDisabled}
+                          placeholder={placeholder}
+                          handleInputError={handleInputError}
+                          // iconError={IconError}
+                          // iconSuccess={IconSuccess}
+                          {...rest}
+                        />
+                      )}
                       {type === 'switch' && (
                         <SwitchButton
                           id={name}
@@ -862,7 +922,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                     </Grid>
                   )}
                 </>
-              ),
+              )
             )}
             {children}
           </>
@@ -985,7 +1045,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                     </Grid>
                   )}
                 </>
-              ),
+              )
             )}
             {children}
           </>
@@ -1056,6 +1116,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               {titleSubmitButton || 'Pesquisar'}
             </Button>
             {cancelSubmit && (
+              // @ts-ignore
               <Button
                 className="primaryButton buttonFooter"
                 onClick={clearInputs}

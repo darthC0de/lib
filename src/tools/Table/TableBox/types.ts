@@ -188,11 +188,15 @@ export interface ITableProps<T> {
   loading?: boolean;
   /**
    * @property *exportList* = Habilita a exportação dos dados da tabela.
-   *
+   * 
    * *Por default, vem habilitada a funcionalidade de exportação para excel*
    * @example exportList={true}
    */
   exportList?: boolean;
+  /**
+   * @property *exportList* = Habilita a exportação dos dados da tabela.
+   * @example exportList={true}
+   */
   exportOptions?(): React.ReactNode;
   defaultSort?: string;
   selectAllRows?: 'perPage' | 'inTable';

@@ -72,70 +72,70 @@ export interface TagStatusProps {
 
 export const Tag = styled.p<TagStatusProps>`
   ${props =>
-    props.width
-      ? css`
+		props.width
+			? css`
   width: {props.width}%;
 `
-      : css`
+			: css`
           width: 100%;
         `}
   ${props =>
-    props.fontSize
-      ? css`
+		props.fontSize
+			? css`
   font-size: {props.fontSize}pt;
 `
-      : css`
+			: css`
           font-size: 10pt;
         `}
 
   color: ${props => (props.color ? props.color : '#59DE8F')} !important;
 
   background: ${props =>
-    props.background ? props.background : '#DEF8E9'} !important;
+		props.background ? props.background : '#DEF8E9'} !important;
 
   border-radius: 6px;
   height: 26px;
   text-align: center;
 
   ${props =>
-    props.customPadding && props.paddingX
-      ? css`
+		props.customPadding && props.paddingX
+			? css`
   padding-left: {props.paddingX}pt;
   padding-right: {props.paddingX}pt;
 `
-      : css`
+			: css`
           padding-left: 8px;
           padding-right: 8px;
         `}
   ${props =>
-    props.customPadding && props.paddingY
-      ? css`
+		props.customPadding && props.paddingY
+			? css`
   padding-top: {props.paddingy}pt;
   padding-bottom: {props.paddingy}pt;
 `
-      : css`
+			: css`
           padding-top: 4px;
           padding-bottom: 4px;
         `}
 
         ${props =>
-    props.customPadding && props.paddingY && props.paddingX
-      ? css`
+		props.customPadding && props.paddingY && props.paddingX
+			? css`
   padding-top: {props.paddingy}pt;
   padding-bottom: {props.paddingy}pt;
   padding-left: {props.paddingX}pt;
   padding-right: {props.paddingX}pt;
 `
-      : null}
+			: null}
 
   padding: ${props => props.paddingY}px ${props => props.paddingX}px;
 
   ${props =>
-    props.styleFont
-      ? css`
+		props.styleFont
+			? css`
   text-transform: {props.styleFont};
 `
-      : css`
+			: css`
           text-transform: capitalize;
         `}
 `;

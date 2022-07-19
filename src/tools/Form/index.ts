@@ -3,5 +3,6 @@ import SwitchButton from './SwitchButton';
 import Select from './Select';
 import DatePicker from './DatePicker';
 import Checkbox from './Checkbox';
+import InputMultiple from './MultiText';
 
-export { Input, SwitchButton, Select, DatePicker, Checkbox };
+export { Input, InputMultiple, SwitchButton, Select, DatePicker, Checkbox };
