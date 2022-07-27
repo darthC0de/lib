@@ -1,6 +1,6 @@
 {
   "name": "@pdasolucoes/web",
-  "version": "2.5.1",
+  "version": "2.6.3",
   "description": "This is components aplications for PDA-Solucoes",
   "main": "./lib/index.js",
   "types": "./lib/index",
