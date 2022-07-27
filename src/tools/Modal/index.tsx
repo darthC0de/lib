@@ -109,6 +109,21 @@ export interface PopUpWindowProps {
    */
   title?: string;
   /**
+   * @property *hiddenClose* = esconde os botoes de fechar o modal.
+   * @example hiddenClose='true'
+   */
+  hiddenClose?: boolean;
+  /**
+   * @property *W* = A LARGURA DO MODAL.
+   * @example widthModal=50
+   */
+  widthModal?: number;
+  /**
+   * @property *h* = A ALTURA DO MODAL.
+   * @example heigthModal=50
+   */
+  heigthModal?: number;
+  /**
    * @property *type* = Tipo do modal, edit, delete ou outros.
    * @example type={'edit' | 'delete' | 'create' | 'detail'}
    */
@@ -224,6 +239,9 @@ const Modal: React.FC<PopUpWindowProps> = ({
   tableContent,
   textDefaultButton,
   buttons,
+  widthModal,
+  heigthModal,
+  hiddenClose,
 }) => {
   const handleClickSubmit = React.useCallback(
     data => {
@@ -271,7 +289,12 @@ const Modal: React.FC<PopUpWindowProps> = ({
   return (
     <>
       <Fade unmountOnExit mountOnEnter timeout={400} in={open}>
-        <Container ref={formRef} onSubmit={handleClickSubmit}>
+        <Container
+          ref={formRef}
+          onSubmit={handleClickSubmit}
+          // @ts-ignore
+          widthModal={widthModal}
+        >
           <div>
             {type === 'delete' && (
               <div className="popupDelete">
@@ -720,25 +743,29 @@ const Modal: React.FC<PopUpWindowProps> = ({
                   <div className="popupHeader">
                     {!!title && <h5>{title}</h5>}
                     <div className="contentRightGrid">
-                      <button
-                        type="button"
-                        onClick={handleClickCancel}
-                        className="close"
-                      >
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth="0"
-                          viewBox="0 0 512 512"
-                          color="#ccc"
-                          height="20"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                          style={{ color: 'rgba(204, 204, 204)' }}
+                      {hiddenClose ? (
+                        ''
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={handleClickCancel}
+                          className="close"
                         >
-                          <path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z" />
-                        </svg>
-                      </button>
+                          <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            strokeWidth="0"
+                            viewBox="0 0 512 512"
+                            color="#ccc"
+                            height="20"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style={{ color: 'rgba(204, 204, 204)' }}
+                          >
+                            <path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z" />
+                          </svg>
+                        </button>
+                      )}
                     </div>
                   </div>
 
@@ -840,13 +867,18 @@ const Modal: React.FC<PopUpWindowProps> = ({
                           </>
                         ),
                       )}
-                      <button
-                        type="button"
-                        className="cancel"
-                        onClick={handleClickCancel}
-                      >
-                        Fechar
-                      </button>
+                      {hiddenClose ? (
+                        ''
+                      ) : (
+                        <button
+                          type="button"
+                          className="cancel"
+                          onClick={handleClickCancel}
+                        >
+                          Fechar
+                        </button>
+                      )}
+
                       <button type="submit" className="submit" onClick={onEdit}>
                         {textDefaultButton || 'Salvar'}
                       </button>

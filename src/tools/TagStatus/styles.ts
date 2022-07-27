@@ -74,16 +74,16 @@ export const Tag = styled.p<TagStatusProps>`
   ${props =>
     props.width
       ? css`
-  width: {props.width}%;
-`
+          width: ${props.width}%;
+        `
       : css`
           width: 100%;
         `}
   ${props =>
     props.fontSize
       ? css`
-  font-size: {props.fontSize}pt;
-`
+          font-size: ${props.fontSize}pt;
+        `
       : css`
           font-size: 10pt;
         `}
@@ -100,9 +100,9 @@ export const Tag = styled.p<TagStatusProps>`
   ${props =>
     props.customPadding && props.paddingX
       ? css`
-  padding-left: {props.paddingX}pt;
-  padding-right: {props.paddingX}pt;
-`
+          padding-left: ${props.paddingX}pt;
+          padding-right: ${props.paddingX}pt;
+        `
       : css`
           padding-left: 8px;
           padding-right: 8px;
@@ -110,9 +110,9 @@ export const Tag = styled.p<TagStatusProps>`
   ${props =>
     props.customPadding && props.paddingY
       ? css`
-  padding-top: {props.paddingy}pt;
-  padding-bottom: {props.paddingy}pt;
-`
+          padding-top: ${props.paddingY}pt;
+          padding-bottom: ${props.paddingY}pt;
+        `
       : css`
           padding-top: 4px;
           padding-bottom: 4px;
@@ -121,11 +121,11 @@ export const Tag = styled.p<TagStatusProps>`
         ${props =>
     props.customPadding && props.paddingY && props.paddingX
       ? css`
-  padding-top: {props.paddingy}pt;
-  padding-bottom: {props.paddingy}pt;
-  padding-left: {props.paddingX}pt;
-  padding-right: {props.paddingX}pt;
-`
+          padding-top: ${props.paddingY}pt;
+          padding-bottom: ${props.paddingY}pt;
+          padding-left: ${props.paddingX}pt;
+          padding-right: ${props.paddingX}pt;
+        `
       : null}
 
   padding: ${props => props.paddingY}px ${props => props.paddingX}px;
@@ -133,8 +133,8 @@ export const Tag = styled.p<TagStatusProps>`
   ${props =>
     props.styleFont
       ? css`
-  text-transform: {props.styleFont};
-`
+          text-transform: ${props.styleFont};
+        `
       : css`
           text-transform: capitalize;
         `}

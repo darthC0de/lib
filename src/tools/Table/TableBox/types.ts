@@ -193,6 +193,10 @@ export interface ITableProps<T> {
    * @example exportList={true}
    */
   exportList?: boolean;
+  /**
+   * @property *exportList* = Habilita a exportação dos dados da tabela.
+   * @example exportList={true}
+   */
   exportOptions?(): React.ReactNode;
   defaultSort?: string;
   selectAllRows?: 'perPage' | 'inTable';

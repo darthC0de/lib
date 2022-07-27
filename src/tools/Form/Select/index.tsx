@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useEffect } from 'react';
 import ReactSelect, {
@@ -82,7 +83,9 @@ const Select: React.FC<Props> = ({
   };
 
   return (
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     <Container error={!!error}>
+      {/* @ts-ignore */}
       <ReactSelect
         // @ts-ignore
         isMulti={multiSelect}
