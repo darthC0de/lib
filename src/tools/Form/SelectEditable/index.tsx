@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useRef, useEffect, ReactNode } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import {
@@ -10,6 +7,7 @@ import {
   FormatOptionLabelMeta,
   OptionTypeBase,
   Props as SelectProps,
+  ValueType,
 } from 'react-select';
 // import  from 'react-select';
 import EditIcon from '@material-ui/icons/Edit';
@@ -22,7 +20,8 @@ interface inputErrorProps {
   message: string;
 }
 
-// @ts-ignore
+export type IsMulti = false;
+
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
   hasChanged?(value: number | null): void;
@@ -59,12 +58,12 @@ const SelectEditable: React.FC<Props> = ({
     useField(name);
 
   const handleBlur = React.useCallback(
-    event => {
+    (event: any) => {
       if (!event.target.value) {
-        if (!!handleInputError && !!(messageErrorOnBlur ?? '')) {
+        if (!!handleInputError && !(messageErrorOnBlur == null)) {
           handleInputError({
             inputName: name,
-            message: messageErrorOnBlur!,
+            message: messageErrorOnBlur,
           });
         }
       }
@@ -78,7 +77,7 @@ const SelectEditable: React.FC<Props> = ({
       ref: selectRef.current,
       path: undefined,
       getValue: (ref: any) => {
-        if (rest.isMulti) {
+        if (rest.isMulti ?? false) {
           if (!ref.state.value) {
             return [];
           }
@@ -132,12 +131,10 @@ const SelectEditable: React.FC<Props> = ({
   };
 
   return (
-    <Container error={!!error}>
-      {/* @ts-ignore */}
+    <Container error={!(error == null)}>
       <CreatableSelect
         hideSelectedOptions={false}
         inputMode="text"
-        // @ts-ignore
         formatOptionLabel={formatOptionLabelFN}
         onBlur={handleBlur}
         onFocus={() => {
@@ -145,7 +142,10 @@ const SelectEditable: React.FC<Props> = ({
         }}
         isDisabled={isLoading}
         onCreateOption={onCreateOption}
-        onChange={(newValue: any, actionMeta: ActionMeta<SelectProps>) => {
+        onChange={(
+          newValue: ValueType<any, any>,
+          actionMeta: ActionMeta<SelectProps>,
+        ) => {
           if (hasChanged) {
             clearError();
             hasChanged(newValue?.value);
