@@ -14,6 +14,7 @@ import Tooltip from './tools/Tooltip';
 import TagStatus from './tools/TagStatus';
 import TransferList from './tools/TransferList';
 import ProgressBar from './tools/ProgressBar';
+import AccordionBox from './tools/Accordion';
 import SearchBox, { InputProps, HiddenInputProps } from './tools/Search';
 import Modal, { PopUpWindowProps } from './tools/Modal';
 import { Input, Select, SwitchButton } from './tools/Form';
@@ -42,6 +43,7 @@ import { SimpleTabs, ITabs } from './tools/Tabs';
 export {
   HyperLink,
   Table,
+  AccordionBox,
   IActionRows,
   IColumn,
   IRow,

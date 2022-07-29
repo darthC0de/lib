@@ -1,6 +1,6 @@
 {
   "name": "@pdasolucoes/web",
-  "version": "2.6.3",
+  "version": "2.6.7",
   "description": "This is components aplications for PDA-Solucoes",
   "main": "./lib/index.js",
   "types": "./lib/index",
@@ -13,10 +13,9 @@
     "lint": "eslint --ignore-path .eslintignore --fix --ext .ts,.tsx,.js,.jsx .",
     "prettier": "prettier --ignore-path .eslintignore --write ."
   },
-
   "repository": {
     "type": "git",
-    "url": "git+ssh.dev.azure.com:v3/pdasolucoes/Projetos/React.Web.components"
+    "url": "git+github.com:darthC0de/lib.git"
   },
   "author": "Gabriel Bizzi <blitzcorvinato@gmail.com> (https://github.com/GabrielBizzi)",
   "contributors": [
@@ -24,7 +23,7 @@
     "Juann Brandão (https://github.com/juannbrandao)"
   ],
   "license": "MIT",
-  "homepage": "https://dev.azure.com/pdasolucoes/Projetos/_git/React.Web.components",
+  "homepage": "https://github.com/darthC0de/lib",
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
