@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 /* eslint-disable consistent-return */
@@ -733,7 +736,6 @@ const AccordionBox: React.FC<AccordionProps> = ({
       <Accordion expanded={expand}>
         <AccordionSummary
           expandIcon={
-            // eslint-disable-next-line react/jsx-wrap-multilines
             <ExpandMoreIcon
               color="disabled"
               className="expandSearch"
@@ -772,7 +774,6 @@ const AccordionBox: React.FC<AccordionProps> = ({
 
             {!returnButton && (
               <h1>
-                {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
                 {title || 'Pesquisar'} {moreTitle || null}
               </h1>
             )}
@@ -900,6 +901,7 @@ const AccordionBox: React.FC<AccordionProps> = ({
                                           <p className="labelInput">{label}</p>
                                         )}
                                         {type === 'selectEditable' && (
+                                          // @ts-ignore
                                           <SelectEditable
                                             name={name}
                                             options={options}
@@ -1070,6 +1072,7 @@ const AccordionBox: React.FC<AccordionProps> = ({
                                           <p className="labelInput">{label}</p>
                                         )}
                                         {type === 'selectEditable' && (
+                                          // @ts-ignore
                                           <SelectEditable
                                             name={name}
                                             options={options}
@@ -1255,6 +1258,7 @@ const AccordionBox: React.FC<AccordionProps> = ({
                             <p className="labelInput">{label}</p>
                           )}
                           {type === 'selectEditable' && (
+                            // @ts-ignore
                             <SelectEditable
                               name={name}
                               options={options}
@@ -1422,6 +1426,7 @@ const AccordionBox: React.FC<AccordionProps> = ({
                             <p className="labelInput">{label}</p>
                           )}
                           {type === 'selectEditable' && (
+                            // @ts-ignore
                             <SelectEditable
                               name={name}
                               options={options}

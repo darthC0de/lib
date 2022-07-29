@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { SimpleTabs, ProgressBar } from '../../src';
 import React from 'react';
 
-describe('SimpleTabs component', () => {
+describe('SimpleTabs component rendering', () => {
   test('SimpleTab with one tab', () => {
     const component = shallow(
       <SimpleTabs
@@ -40,6 +40,7 @@ describe('SimpleTabs component', () => {
     }
     const component = shallow(<SimpleTabs tabs={tabs} content={contents} />);
     expect(component).toMatchSnapshot();
+    expect(component.find(`#simple-tab-${tabsNumber}`)).toBeTruthy();
   });
 
   test('SimpleTab with one children ', () => {
@@ -60,6 +61,7 @@ describe('SimpleTabs component', () => {
       />,
     );
     expect(component).toMatchSnapshot();
+    expect(component.find('#simple-tabpanel-0')).toBeTruthy();
   });
 
   test('SimpleTab with multiple tab and children', () => {
@@ -77,6 +79,49 @@ describe('SimpleTabs component', () => {
       });
     }
     const component = shallow(<SimpleTabs tabs={tabs} content={contents} />);
+
     expect(component).toMatchSnapshot();
+    expect(component.find(`#simple-tab-${tabsNumber}`)).toBeTruthy();
+    expect(component.find(`#simple-tabpanel-${tabsNumber}`)).toBeTruthy();
   });
 });
+// describe('SimpleTabs component functionality', () => {
+//   test('Tab changing', () => {
+//     const component = shallow(
+//       <SimpleTabs
+//         tabs={[
+//           {
+//             anchorTab: 0,
+//             label: 'test 01',
+//           },
+//           {
+//             anchorTab: 1,
+//             label: 'test 02',
+//           },
+//         ]}
+//         content={[
+//           {
+//             anchorContent: 0,
+//             children: () => <ProgressBar value={100} type="linear" />,
+//           },
+//           {
+//             anchorContent: 1,
+//             children: () => <ProgressBar value={100} type="linear" />,
+//           },
+//         ]}
+//       />,
+//     );
+
+//     const tab = component.find('#simple-tab-1');
+//     tab.simulate('click');
+
+//     // const content = component.find('#simple-tabpanel-1');
+//     console.log(component.debug());
+
+//     // @ts-ignore
+//     // console.log(tab.props());
+//     expect(component).toMatchSnapshot();
+//     // expect(tab).toHaveAttribute('aria-selected', true);
+//     // expect(content).toHaveProperty('aria-selected', true);
+//   });
+// });

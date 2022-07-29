@@ -1,5 +1,6 @@
 {
   "branchPrefix": "updates/",
+  "baseBranches": ["dev"],
   "packageRules": [
     {
       "updateTypes": ["minor", "patch", "pin", "digest"],
@@ -11,13 +12,13 @@
     }
   ],
   "assignAutomerge": true,
-  "assignees": ["rodcordeiro", "JuniorAlvess"],
+  "assignees": ["rodcordeiro", "GabrielBizzi"],
   "labels": ["dependencies"],
   "recreateClosed": true,
   "rebaseWhen": "conflicted",
   "vulnerabilityAlerts": {
     "labels": ["security"],
-    "assignees": ["@rodcordeiro"]
+    "assignees": ["rodcordeiro"]
   },
   "extends": [
     "config:base",

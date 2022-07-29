@@ -790,6 +790,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                             <p className="labelInput">{label}</p>
                           )}
                           {type === 'selectEditable' && (
+                            // @ts-ignore
                             <SelectEditable
                               name={name}
                               options={options}
@@ -928,7 +929,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 onClickEvent,
                 labelCheckbox,
                 onChangeEvent,
-                display = true,
+                display,
                 isMulti,
                 onCreateOption,
                 editAction,
@@ -954,6 +955,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                         <p className="labelInput">{label}</p>
                       )}
                       {type === 'selectEditable' && (
+                        // @ts-ignore
                         <SelectEditable
                           name={name}
                           options={options}
@@ -1083,7 +1085,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 labelCheckbox,
                 onChangeEvent,
                 isMulti,
-                display = true,
+                display,
                 onCreateOption,
                 editAction,
                 formatOptionLabel,
@@ -1116,6 +1118,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                         <p className="labelInput">{label}</p>
                       )}
                       {type === 'selectEditable' && (
+                        // @ts-ignore
                         <SelectEditable
                           name={name}
                           options={options}
