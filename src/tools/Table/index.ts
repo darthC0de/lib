@@ -10,8 +10,9 @@ import {
   TableCellProps,
 } from './TableBox/types';
 
-export {
-  Table,
+export { Table };
+
+export type {
   IActionRows,
   IColumn,
   IRow,
