@@ -122,14 +122,14 @@ export type IRow<T = any> = T;
 export type ISelectBoxActions<T> = {
   onClick: (
     row: IRow<T>[],
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void | undefined;
   renderItem: () => string | ReactElement;
 };
 export type IRowAction<T> = {
   onClick: (
     row: IRow<T>,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void | undefined;
   renderItem: (row?: IRow<T>) => string | ReactElement;
 };
@@ -137,7 +137,7 @@ export type IRowAction<T> = {
 export type IActionRows<T> = {
   onClick: (
     row: IRow<T>[],
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void | undefined;
   renderItem: () => string | ReactElement;
 };
@@ -194,9 +194,10 @@ export interface ITableProps<T> {
    */
   exportList?: boolean;
   /**
-   * @property *exportList* = Habilita a exportação dos dados da tabela.
-   * @example exportList={true}
+   * @property *totals* = Habilita a linha de totais, recebendo um array com os  nomes das colunas que deverão ter totais.
+   * @example totals={true}
    */
+  totals?: string[];
   exportOptions?(): React.ReactNode;
   defaultSort?: string;
   selectAllRows?: 'perPage' | 'inTable';
@@ -213,11 +214,11 @@ export interface ITableProps<T> {
   defaultNumberOfRows?: number;
   onDeleteRow?: (
     row: IRow<T>,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   onEditRow?: (
     row: IRow<T>,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 }
 

@@ -34,6 +34,7 @@ import TableCell from './TableCell';
 import AllTableSelectBox from './AllSelectBox';
 import PaginationComponent from '../PaginationComponentTest';
 
+
 /**
  * Componente para renderização dinâmica de tabelas.
  *
@@ -54,9 +55,9 @@ import PaginationComponent from '../PaginationComponentTest';
  * @param {array} rows Array de informações que preencherão a tabela
  * @param {boolean} loading Se a tabela está em estado de carregamento
  * @param {number} defaultPage página default para exibição da tabela.
- *
+ * @param totals Habilita a linha de totais da tabela
  */
-function Table<T>({
+ function Table<T>({
   columns,
   rowActions,
   getRows,
@@ -77,6 +78,7 @@ function Table<T>({
   buttons,
   beforeExport,
   defaultPage = 0,
+  totals,
 }: React.PropsWithChildren<ITableProps<T>>): JSX.Element {
   const [page, setPage] = useState<number>(defaultPage);
   const [sortBy, setSortBy] = useState<string | undefined>(defaultSort);
@@ -89,9 +91,46 @@ function Table<T>({
     defaultNumberOfRows ||
       (!!paginationOptions && paginationOptions?.length
         ? paginationOptions[0].label
-        : 5),
+        : 5)
   );
   const [selectedRows, setSelectedRows] = useState<IRow<T>[]>([] as IRow<T>[]);
+  const [totalRow, setTotalRow] = useState<IRow<T>>({} as IRow<T>);
+  const columnsKeys: string[] = [];
+
+  function validateTotalColumn(row: T | any, column: string) {
+    const numberRegex = new RegExp(/\d/gi);
+    if (!row[column]) return false;
+    if (row[column] === '-') return false;
+    if (!numberRegex.test(row[column])) return false;
+    return true;
+  }
+
+  useEffect(() => {
+    if (totals) {
+      const firstRow = rows[0];
+
+      // eslint-disable-next-line no-restricted-syntax, guard-for-in
+      for (const key in firstRow) {
+        columnsKeys.push(key);
+        // row[key] = columns.indexOf(key) !== -1 ? 0 : '-';
+      }
+
+      columnsKeys.forEach(column => {
+        const row: any = totalRow;
+        row[column] =
+          totals.indexOf(column) !== -1
+            ? rows.reduce((current, item) => {
+                return validateTotalColumn(item, column)
+                  ? // @ts-ignore
+                    current + Number(item[column])
+                  : current;
+              }, 0)
+            : '-';
+        setTotalRow(row);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rows]);
 
   const updateRows = useCallback(() => {
     // setIsAllSelected(
@@ -104,7 +143,7 @@ function Table<T>({
       setIsAllSelected(
         selectedRows.length ===
           rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .length,
+            .length
       );
     }
   }, [page, rows, rowsPerPage, selectAllRows, selectedRows.length]);
@@ -151,7 +190,7 @@ function Table<T>({
       }
       setSortBy(newSortAtribute);
     },
-    [sortBy],
+    [sortBy]
   );
 
   const dynamicSort = useCallback((prop: string) => {
@@ -188,7 +227,7 @@ function Table<T>({
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
+    newPage: number
   ) => {
     if (selectAllRows === 'perPage') {
       setPage(newPage);
@@ -196,9 +235,9 @@ function Table<T>({
         selectedRows.includes(
           rows.slice(
             newPage * rowsPerPage,
-            newPage * rowsPerPage + rowsPerPage,
-          )[0],
-        ),
+            newPage * rowsPerPage + rowsPerPage
+          )[0]
+        )
       );
     } else {
       setPage(newPage);
@@ -213,7 +252,7 @@ function Table<T>({
             ? [...rows]
             : selectedRows.length === rows.length
             ? []
-            : [...rows],
+            : [...rows]
         );
       } else {
         setSelectedRows(
@@ -223,11 +262,11 @@ function Table<T>({
               rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .length
             ? []
-            : rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
+            : rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         );
       }
     },
-    [page, rows, rowsPerPage, selectedRows.length],
+    [page, rows, rowsPerPage, selectedRows.length]
   );
 
   const handleSelect = useCallback(
@@ -242,7 +281,7 @@ function Table<T>({
         updateRows();
       }
     },
-    [selectedRows, updateRows],
+    [selectedRows, updateRows]
   );
 
   const actionHandle = useCallback(
@@ -252,7 +291,7 @@ function Table<T>({
       setAllSelected(false);
       // console.log({ rowsSelected, handled, event, allSelected, selectedRows });
     },
-    [],
+    []
   );
 
   useEffect(() => {
@@ -262,7 +301,7 @@ function Table<T>({
       setIsAllSelected(
         selectedRows.length ===
           rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .length,
+            .length
       );
     }
   }, [page, rows, rows.length, rowsPerPage, selectAllRows, selectedRows]);
@@ -273,6 +312,16 @@ function Table<T>({
 
   if (rows.length === 0) {
     return <p>Não foi encontrado nenhum registro</p>;
+  }
+
+  function replaceTotalLabel(column: string, row: T) {
+    const obj: any = {};
+
+    // eslint-disable-next-line guard-for-in
+    for (const key in row) {
+      obj[key] = key === column ? 'Total' : row[key];
+    }
+    return obj;
   }
 
   return (
@@ -338,7 +387,7 @@ function Table<T>({
                   {action.renderItem()}
                 </button>
               </>
-            ),
+            )
           )}
         {getRows &&
           getRows.map((action, index) => (
@@ -591,6 +640,123 @@ function Table<T>({
                   )}
                 </tr>
               ))}
+              {totals && (
+                <tr
+                  tabIndex={rows.length + 1}
+                  key={Date.now() + rows.length + 1 + Math.random()}
+                >
+                  {selectBox && <td style={{ padding: '7px' }} width="2%" />}
+
+                  {columns.map((column, indexColumn) => {
+                    if (indexColumn === 0) {
+                      return (
+                        <TableCell
+                          key={`${String(indexColumn)}${rows.length + 1}`}
+                          column={{
+                            ...column,
+                            type: 'string',
+                            position: 'left',
+                            cssProps: {
+                              ...column.cssProps,
+                              backgroundColor: '#E5E5E599',
+                            },
+                            cssText: {
+                              ...column.cssText,
+                              fontWeight: '800',
+                              textAlign: 'left',
+                            },
+                          }}
+                          row={replaceTotalLabel(
+                            String(column.props[0]),
+                            totalRow
+                          )}
+                        />
+                      );
+                    }
+                    if (column.display === 'notEmpty') {
+                      if (
+                        rows.findIndex((item: any) => item[column.props[0]]) >
+                        -1
+                      ) {
+                        return (
+                          <TableCell
+                            key={`${String(indexColumn)}${rows.length + 1}`}
+                            column={{
+                              ...column,
+                              position: 'right',
+                              type: 'string',
+                              cssProps: {
+                                ...column.cssProps,
+                                backgroundColor: '#E5E5E599',
+                              },
+                              cssText: {
+                                ...column.cssText,
+                                fontWeight: '800',
+                                textAlign: 'right',
+                              },
+                            }}
+                            row={totalRow}
+                          />
+                        );
+                      }
+                      return null;
+                    }
+                    if (column.display === false) {
+                      if (
+                        rows.findIndex((item: any) => item[column.props[0]]) >
+                        -1
+                      ) {
+                        return (
+                          <TableCell
+                            key={`${String(indexColumn)}${rows.length + 1}`}
+                            column={{
+                              ...column,
+                              position: 'right',
+                              type: 'string',
+                              cssProps: {
+                                ...column.cssProps,
+                                backgroundColor: '#E5E5E599',
+                              },
+                              cssText: {
+                                ...column.cssText,
+                                fontWeight: '800',
+                                textAlign: 'right',
+                              },
+                            }}
+                            row={totalRow}
+                          />
+                        );
+                      }
+                      return null;
+                    }
+                    return (
+                      <>
+                        <TableCell
+                          key={`${String(indexColumn)}${rows.length + 1}`}
+                          column={{
+                            ...column,
+                            position: 'right',
+                            type: 'string',
+                            cssProps: {
+                              ...column.cssProps,
+                              backgroundColor: '#E5E5E599',
+                            },
+                            cssText: {
+                              ...column.cssText,
+                              fontWeight: '800',
+                              textAlign: 'right',
+                            },
+                          }}
+                          row={totalRow}
+                        />
+                      </>
+                    );
+                  })}
+                  {(!!onEditRow ||
+                    !!onDeleteRow ||
+                    (!!rowActions && !(rowActions.length === 0))) && <td />}
+                </tr>
+              )}
             </tbody>
           </table>
         </Container>
