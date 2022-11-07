@@ -1,6 +1,6 @@
 {
   "branchPrefix": "updates/",
-  "baseBranches": ["dev"],
+  "baseBranches": ["develop"],
   "packageRules": [
     {
       "updateTypes": ["minor", "patch", "pin", "digest"],
