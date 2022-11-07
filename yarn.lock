@@ -2319,10 +2319,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-paginate@^6.2.1":
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/@types/react-paginate/-/react-paginate-6.2.3.tgz#931ee688bafa2477d146f0f9bb778cd188855e4e"
-  integrity sha512-msO6YaYrGlPLxLyJ3kSoXVXcTrMcAVuBTS2ksJ1jG72w9loN9EHZXu6G+cPUYOZSuuvt+EUQC3t0B+fjldC1Tg==
+"@types/react-paginate@^7.0.0":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-paginate/-/react-paginate-7.1.1.tgz#81cbe7bfcf2af60b9d784a56cd0e5d870675c68c"
+  integrity sha512-94cEJHfBaINba2XGQOWFJF/tYe+AImIhOPqMCfqyeFOgk0qUpDZyDOOW76A1rgdtWndR8UwsMPgV/uuTM8vZ7w==
   dependencies:
     "@types/react" "*"
 
